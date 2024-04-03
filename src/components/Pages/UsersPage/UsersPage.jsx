@@ -4,6 +4,7 @@ import style from "./UsersPage.module.css";
 import axios from "axios";
 
 class UsersPage extends React.Component {
+    // eslint-disable-next-line
     constructor(props) {
         super(props);
     }
@@ -11,7 +12,7 @@ class UsersPage extends React.Component {
         axios
             .get("https://social-network.samuraijs.com/api/1.0/users/")
             .then((resp) => {
-                props.setUsers(resp.data.items);
+                this.props.setUsers(resp.data.items);
                 console.log(resp.data.items);
             });
     }
