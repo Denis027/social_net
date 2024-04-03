@@ -1,0 +1,21 @@
+.nav {
+    grid-area: nav;
+    background-color: gray;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.nav ul {
+    list-style-type: none;
+}
+
+.item a {
+    font-size: 25px;
+    text-decoration: none;
+    color: aquamarine;
+}
+
+.item a:active,
+.item a:focus {
+    color: black;
+}

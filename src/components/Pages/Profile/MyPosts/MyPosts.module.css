@@ -1,0 +1,16 @@
+.postWrapper {
+    display: grid;
+}
+
+.newPost {
+    height: 100px;
+    width: 700px;
+    border-radius: 10px;
+}
+
+.sendButton{
+    height: 30px;
+    width: 70px;
+    border-radius: 10px; 
+    margin-bottom: 10px;
+}

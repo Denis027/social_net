@@ -1,0 +1,30 @@
+.dialog_wrapper {
+    background-color: gray;
+    display: grid;
+    align-items: center;
+    padding: 7px;
+    border-radius: 10px;
+    grid-template-areas:
+        "ava name name"
+        "ava mes mes";
+}
+
+.item {
+    grid-area: mes;
+    font-size: 16px;
+    color: aquamarine;
+}
+
+.Avatarka {
+    grid-area: ava;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.name {
+    color: aquamarine;
+    grid-area: name;
+}

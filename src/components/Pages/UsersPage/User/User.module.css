@@ -1,0 +1,53 @@
+.userWrapper {
+    background-color: gray;
+    display: grid;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    grid-template-areas:
+        "ava name loc"
+        "ava stat stat"
+        "b stat stat";
+}
+
+.status {
+    color: aquamarine;
+    grid-area: stat;
+    text-decoration: none;
+    font-size: 20px;
+}
+.location {
+    color: aquamarine;
+    grid-area: loc;
+}
+
+.avatarka {
+    display: grid;
+    grid-area: ava;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    margin: 0px 30px 15px 0px;
+}
+
+.button {
+    font-size: 18px;
+    width: 70px;
+    background-color: aquamarine;
+    color: gray;
+    border-radius: 10px;
+    display: grid;
+    grid-area: b;
+}
+
+.name {
+    font-size: 18px;
+    color: aquamarine;
+    grid-area: name;
+    margin-right: 20px;
+}
+
+.id {
+    color: aquamarine;
+}

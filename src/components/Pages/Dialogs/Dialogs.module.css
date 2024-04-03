@@ -1,0 +1,50 @@
+h1 {
+    color: aquamarine;
+}
+
+.dialogs {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+}
+
+.dialogItems {
+    display: grid;
+    align-self: start;
+    gap: 10px;
+    color: white;
+    font-size: 18px;
+    margin-right: 10px;
+    background-color: aquamarine;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.dialogItems a {
+    text-decoration: none;
+}
+
+.messages {
+    display: grid;
+    gap: 10px;
+    color: gray;
+    font-size: 20px;
+    background-color: aquamarine;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.send_mess {
+    width: 100%;
+}
+
+.text {
+    height: 200px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.sendButton {
+    width: 70px;
+    background-color: gray;
+    border-radius: 10px;
+}

@@ -1,0 +1,11 @@
+.item {
+    padding: 10px;
+    border-radius: 10px;
+    color: aquamarine;
+    background-color: gray;
+    max-width: 500px;
+}
+
+.item[my_message*="true"] {
+    justify-self: end;
+}

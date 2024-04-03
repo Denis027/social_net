@@ -1,0 +1,41 @@
+.post {
+    background-color: aquamarine;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-areas: 
+    "ava name name" 
+    "mes mes mes" 
+    "mes mes mes";
+    grid-template-columns: 1fr 10fr;
+    justify-items: stretch;
+}
+
+
+.item {
+    grid-area: mes;
+    color: gray;
+    /* max-width: 750px;
+    margin-right: 25px; */
+    margin: 10px 5px;
+}
+
+.Avatarka {
+    grid-area: ava;
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+
+}
+
+.name{
+    grid-area: name;
+}
+
+.likeButton{
+    height: 30px;
+    width: 90px;
+    border-radius: 10px;
+}
+
