@@ -6,11 +6,14 @@ import axios from "axios";
 class UsersPage extends React.Component {
     constructor(props) {
         super(props);
-        const apiUrl = "https://social-network.samuraijs.com/api/1.0/users/";
-        axios.get(apiUrl).then((resp) => {
-            props.setUsers(resp.data.items);
-            console.log(resp.data.items);
-        });
+    }
+    componentDidMount() {
+        axios
+            .get("https://social-network.samuraijs.com/api/1.0/users/")
+            .then((resp) => {
+                props.setUsers(resp.data.items);
+                console.log(resp.data.items);
+            });
     }
     render = () => {
         return (
