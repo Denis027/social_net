@@ -73,10 +73,10 @@ const usersReducer = (state = initialState, action) => {
             stateCopy = { ...state, users: [...action.users] };
             return stateCopy;
         case SET_USERS_COUNT:
-            stateCopy = { totalUsersCount: action.totalUsersCount };
+            stateCopy = { ...state, totalUsersCount: action.totalUsersCount };
             return stateCopy;
         case SET_CURRENT_PAGE:
-            stateCopy = { currentPage: action.currentPage };
+            stateCopy = { ...state, currentPage: action.currentPage };
             return stateCopy;
         case GET_PAGES:
             let pagesNew = [];
@@ -86,7 +86,7 @@ const usersReducer = (state = initialState, action) => {
             for (let i = 1; i <= totalPagesCount; i++) {
                 pagesNew.push(i);
             }
-            stateCopy = { pages: [...pagesNew] };
+            stateCopy = { ...state, pages: [...pagesNew] };
             return stateCopy;
         default:
             return state;

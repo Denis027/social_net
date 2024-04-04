@@ -2,7 +2,7 @@ import React from "react";
 import User from "./User/User";
 import style from "./UsersPage.module.css";
 import axios from "axios";
-// import UsersList from "./User/UsersList";
+import UsersList from "./User/UsersList";
 
 class UsersPage extends React.Component {
     // eslint-disable-next-line
@@ -12,7 +12,7 @@ class UsersPage extends React.Component {
     componentDidMount() {
         axios
             .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.totalUsersCount}`
+                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
             )
             .then((resp) => {
                 this.props.setUsers(resp.data.items);
@@ -22,33 +22,35 @@ class UsersPage extends React.Component {
             });
     }
     render = () => {
-        // let onPageChange = (pageNumber) => {
-        //     this.props.setCurrentPage(pageNumber);
-        //     axios
-        //         .get(
-        //             `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.totalUsersCount}`
-        //         )
-        //         .then((resp) => {
-        //             this.props.setUsers(resp.data.items);
-        //             // this.props.setUsersCount(resp.data.totalCount);
-        //             this.props.getPages();
-        //             console.log(resp.data.items);
-        //         });
-        // };
+        let onPageChange = (page) => {
+            console.log(page);
+            this.props.setCurrentPage(page);
+            axios
+                .get(
+                    `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+                )
+                .then((resp) => {
+                    this.props.setUsers(resp.data.items);
+                    // this.props.setUsersCount(resp.data.totalCount);
+                    this.props.getPages();
+                    console.log(resp.data.items);
+                });
+        };
         return (
             <div>
                 <div className={style.title}>
                     <h1>Users</h1>
                 </div>
-                {/* <div
-                // onClick={(pageNumber) => {
-                //     return onPageChange(pageNumber);
-                // }}
-                >
+                <div>
                     {this.props.pages.map((page) => (
-                        <UsersList key={page} pageNumber={page} />
+                        <UsersList
+                            onPageChange={onPageChange}
+                            currentPage={this.props.currentPage}
+                            key={page}
+                            page={page}
+                        />
                     ))}
-                </div> */}
+                </div>
                 <div className={style.usersWrapper}>
                     <div className={style.usersItems}>
                         {this.props.users.map((u) => (
