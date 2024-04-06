@@ -5,7 +5,6 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 const SET_USERS_COUNT = "SET_USERS_COUNT";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-const GET_PAGES = "GET_PAGES";
 
 let initialState = {
     users: [
@@ -40,10 +39,12 @@ let initialState = {
             status: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.",
         },
     ],
-    pages: [],
-    pageSize: 10,
-    totalUsersCount: 54,
-    currentPage: 1,
+    usersList: {
+        pages: [],
+        pageSize: 10,
+        totalUsersCount: 154,
+        currentPage: 1,
+    },
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -73,20 +74,22 @@ const usersReducer = (state = initialState, action) => {
             stateCopy = { ...state, users: [...action.users] };
             return stateCopy;
         case SET_USERS_COUNT:
-            stateCopy = { ...state, totalUsersCount: action.totalUsersCount };
+            stateCopy = {
+                ...state,
+                usersList: {
+                    ...state.usersList,
+                    totalUsersCount: action.totalUsersCount,
+                },
+            };
             return stateCopy;
         case SET_CURRENT_PAGE:
-            stateCopy = { ...state, currentPage: action.currentPage };
-            return stateCopy;
-        case GET_PAGES:
-            let pagesNew = [];
-            let totalPagesCount = Math.ceil(
-                state.totalUsersCount / state.pageSize
-            );
-            for (let i = 1; i <= totalPagesCount; i++) {
-                pagesNew.push(i);
-            }
-            stateCopy = { ...state, pages: [...pagesNew] };
+            stateCopy = {
+                ...state,
+                usersList: {
+                    ...state.usersList,
+                    currentPage: action.currentPage,
+                },
+            };
             return stateCopy;
         default:
             return state;
@@ -107,9 +110,6 @@ export const setUsersCountAC = (totalUsersCount) => {
 };
 export const setCurrentPageAC = (currentPage) => {
     return { type: SET_CURRENT_PAGE, currentPage };
-};
-export const getPagesAC = () => {
-    return { type: GET_PAGES };
 };
 
 export default usersReducer;
