@@ -3,13 +3,21 @@ import User from "./User/User";
 import style from "./UsersPage.module.css";
 
 const UsersPage = (props) => {
-    const pages = [];
+    const allPages = [];
+    // const shownPages = [];
+    // const minPage = 1;
+    // const maxPage = 10;
     let totalPagesCount = Math.ceil(
         props.usersList.totalUsersCount / props.usersList.pageSize
     );
+
     for (let i = 1; i <= totalPagesCount; i++) {
-        pages.push(i);
+        allPages.push(i);
     }
+
+    // for (let i = minPage; minPage <= i <= maxPage; i++) {
+    //     shownPages.push(i);
+    // }
 
     return (
         <div>
@@ -18,7 +26,14 @@ const UsersPage = (props) => {
                     <h1>Users</h1>
                 </div>
                 <div className={style.usersListWrapper}>
-                    {pages.map((page) => (
+                    {/* <div
+                        onClick={() => {
+                            console.log(shownPages);
+                        }}
+                    >
+                        prev
+                    </div> */}
+                    {allPages.map((page) => (
                         <div key={page} className={style.usersListItemWrapper}>
                             <div
                                 onClick={() => {
@@ -34,6 +49,13 @@ const UsersPage = (props) => {
                             </div>
                         </div>
                     ))}
+                    {/* <div
+                        onClick={() => {
+                            console.log(shownPages);
+                        }}
+                    >
+                        next
+                    </div> */}
                 </div>
                 <div className={style.usersWrapper}>
                     <div className={style.usersItems}>
