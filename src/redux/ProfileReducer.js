@@ -1,10 +1,12 @@
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
 const ADD_NEW_POST = "ADD-NEW-POST";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 let initialState = {
     newPostText: "kek",
     Posts: [
         {
+            id: 1,
             name: "Ivan",
             ava_alt: "ava",
             ava_src:
@@ -14,6 +16,7 @@ let initialState = {
             likecount: 123,
         },
         {
+            id: 2,
             name: "Andry",
             ava_alt: "ava",
             ava_src:
@@ -24,6 +27,7 @@ let initialState = {
             likecount: 123,
         },
         {
+            id: 3,
             name: "Alex",
             ava_alt: "ava",
             ava_src:
@@ -33,13 +37,17 @@ let initialState = {
             likecount: 123,
         },
     ],
+    profile: null,
 };
 
 const profileReducer = (state = initialState, action) => {
     let stateCopy = { ...state };
     switch (action.type) {
         case UPDATE_POST_TEXT: {
-            stateCopy.newPostText = action.newText;
+            stateCopy = {
+                ...state,
+                newPostText: action.newText,
+            };
             return stateCopy;
         }
         case ADD_NEW_POST: {
@@ -51,9 +59,21 @@ const profileReducer = (state = initialState, action) => {
                 message: stateCopy.newPostText,
                 likecount: 123,
             };
-            stateCopy.Posts = [...state.Posts];
+            stateCopy = {
+                ...state,
+                Posts: [...state.Posts],
+            };
             stateCopy.Posts.push(newPost);
             stateCopy.newPostText = "";
+            return stateCopy;
+        }
+        case SET_USER_PROFILE: {
+            stateCopy = {
+                ...state,
+                profile: {
+                    ...action.profile,
+                },
+            };
             return stateCopy;
         }
         default:
@@ -61,11 +81,14 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const updatePostTextActionCreator = (newText) => {
-    return { type: "UPDATE-POST-TEXT", newText: newText };
+export const onPostChange = (newText) => {
+    return { type: UPDATE_POST_TEXT, newText };
 };
-export const addNewPostActionCreator = () => {
-    return { type: "ADD-NEW-POST" };
+export const addNewPost = () => {
+    return { type: ADD_NEW_POST };
+};
+export const setUserProfile = (profile) => {
+    return { type: SET_USER_PROFILE, profile };
 };
 
 export default profileReducer;

@@ -1,0 +1,12 @@
+.usersListItemWrapper {
+    padding-left: 5px;
+    background-color: aquamarine;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.usersListCurrentItem {
+    padding-left: 5px;
+    font-weight: bold;
+    border-radius: 10px;
+}

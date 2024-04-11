@@ -12,11 +12,12 @@ const Dialogs = (props) => {
             src={d.ava_src}
             name={d.name}
             id={d.id}
+            key={d.id}
             message={d.message}
         />
     ));
     let messageEl = props.dialogsPage.messagesData.map((m) => (
-        <Message my_message={m.my_message} message={m.message} />
+        <Message key={m.id} my_message={m.my_message} message={m.message} />
     ));
     let onTextChange = () => {
         let newMessageText = newMessageElement.current.value;
@@ -27,9 +28,7 @@ const Dialogs = (props) => {
     };
     return (
         <div>
-            <div className={style.title}>
-                <h1>Dialogs</h1>
-            </div>
+            <h1 className={style.title}>Dialogs</h1>
             <div className={style.dialogs}>
                 <div className={style.dialogItems}>{dialogEl}</div>
                 <div className={style.messages}>

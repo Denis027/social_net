@@ -6,6 +6,7 @@ const MyPosts = (props) => {
     let newPostEl = React.createRef();
     const PostsElem = props.profilePage.Posts.map((p) => (
         <Post
+            key={p.id}
             alt={p.ava_alt}
             src={p.ava_src}
             message={p.message}
@@ -13,22 +14,19 @@ const MyPosts = (props) => {
             name={p.name}
         />
     ));
-    let onTextChange = () => {
-        let newText = newPostEl.current.value;
-        props.onPostChange(newText);
-    };
-    let addPostButton = () => {
-        props.addNewPost();
-    };
+
     return (
         <div className={style.postWrapper}>
             <textarea
-                onChange={onTextChange}
+                onChange={() => props.onPostChange(newPostEl.current.value)}
                 ref={newPostEl}
                 className={style.newPost}
                 value={props.profilePage.newPostText}
             ></textarea>
-            <button onClick={addPostButton} className={style.sendButton}>
+            <button
+                onClick={() => props.addNewPost()}
+                className={style.sendButton}
+            >
                 AddPost
             </button>
             {PostsElem}

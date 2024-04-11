@@ -1,14 +1,17 @@
 import React from "react";
 import style from "./User.module.css";
+import { NavLink } from "react-router-dom";
 
 const User = (props) => {
     return (
         <div className={style.userWrapper}>
-            <img
-                className={style.avatarka}
-                alt="users_photo"
-                src="https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg"
-            ></img>
+            <NavLink to={"/profile/" + props.id}>
+                <img
+                    className={style.avatarka}
+                    alt="users_photo"
+                    src="https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg"
+                />
+            </NavLink>
             {props.followed ? (
                 <button
                     onClick={() => {

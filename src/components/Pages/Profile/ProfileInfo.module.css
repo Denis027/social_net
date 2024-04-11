@@ -1,0 +1,24 @@
+.ProfileInfoWrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+        "ava name"
+        "ava dis";
+}
+
+.Ava {
+    grid-area: ava;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.itemName {
+    grid-area: name;
+    color: aquamarine;
+}
+
+.itemDis {
+    grid-area: dis;
+    color: aquamarine;
+}
