@@ -9,7 +9,7 @@ import {
     setUsersCount,
     setCurrentPage,
     setIsFetching,
-} from "../../../redux/UsersReducer";
+} from "../../../redux/usersReducer";
 import preloader from "../../../logo.svg";
 
 class UsersPageContainer extends React.Component {
@@ -21,7 +21,10 @@ class UsersPageContainer extends React.Component {
         this.props.setIsFetching(true);
         axios
             .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+                {
+                    withCredentials: true,
+                }
             )
             .then((resp) => {
                 this.props.setUsers(resp.data.items);
@@ -36,7 +39,10 @@ class UsersPageContainer extends React.Component {
             this.props.setIsFetching(true);
             axios
                 .get(
-                    `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`
+                    `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`,
+                    {
+                        withCredentials: true,
+                    }
                 )
                 .then((resp) => {
                     this.props.setUsers(resp.data.items);

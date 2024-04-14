@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./User.module.css";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const User = (props) => {
     return (
@@ -15,7 +16,22 @@ const User = (props) => {
             {props.followed ? (
                 <button
                     onClick={() => {
-                        props.onClickUnfollow(props.id);
+                        axios
+                            .delete(
+                                `https://social-network.samuraijs.com/api/1.0//follow/${props.id}`,
+                                {
+                                    withCredentials: true,
+                                    headers: {
+                                        "API-KEY":
+                                            "5aadb8d8-c85b-45a8-8a26-0a0f38402345",
+                                    },
+                                }
+                            )
+                            .then((resp) => {
+                                if (resp.data.resultCode === 0) {
+                                    props.onClickUnfollow(props.id);
+                                }
+                            });
                     }}
                     className={style.button}
                 >
@@ -24,7 +40,23 @@ const User = (props) => {
             ) : (
                 <button
                     onClick={() => {
-                        props.onClickFollow(props.id);
+                        axios
+                            .post(
+                                `https://social-network.samuraijs.com/api/1.0//follow/${props.id}`,
+                                {},
+                                {
+                                    withCredentials: true,
+                                    headers: {
+                                        "API-KEY":
+                                            "5aadb8d8-c85b-45a8-8a26-0a0f38402345",
+                                    },
+                                }
+                            )
+                            .then((resp) => {
+                                if (resp.data.resultCode === 0) {
+                                    props.onClickFollow(props.id);
+                                }
+                            });
                     }}
                     className={style.button}
                 >
