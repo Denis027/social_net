@@ -2,7 +2,6 @@ import React from "react";
 import ProfileInfo from "./ProfileInfo";
 import style from "./ProfileContainer.module.css";
 import { connect } from "react-redux";
-import axios from "axios";
 import {
     setUserProfile,
     onPostChange,
@@ -10,6 +9,7 @@ import {
 } from "../../../redux/profileReducer";
 import MyPosts from "./MyPosts/MyPosts";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { usersAPI } from "../../../api/usersAPI";
 
 class ProfileContainer extends React.Component {
     // eslint-disable-next-line
@@ -17,17 +17,11 @@ class ProfileContainer extends React.Component {
         super(props);
     }
     componentDidMount = () => {
-        let userId = this.props.router.params.userId;
-        if (!userId) {
-            userId = 30973;
-        }
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
-            )
-            .then((resp) => {
-                this.props.setUserProfile(resp.data);
-                // this.props.setUsersCount(resp.data.totalCount);
+        usersAPI
+            .getUserProfile(this.props.router.params.userId)
+            .then((data) => {
+                this.props.setUserProfile(data);
+                // this.props.setUsersCount(data.totalCount);
             });
     };
     render = () => {

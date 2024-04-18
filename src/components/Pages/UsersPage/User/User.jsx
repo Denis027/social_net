@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./User.module.css";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+import { usersAPI } from "../../../../api/usersAPI";
 
 const User = (props) => {
     return (
@@ -16,22 +16,11 @@ const User = (props) => {
             {props.followed ? (
                 <button
                     onClick={() => {
-                        axios
-                            .delete(
-                                `https://social-network.samuraijs.com/api/1.0//follow/${props.id}`,
-                                {
-                                    withCredentials: true,
-                                    headers: {
-                                        "API-KEY":
-                                            "5aadb8d8-c85b-45a8-8a26-0a0f38402345",
-                                    },
-                                }
-                            )
-                            .then((resp) => {
-                                if (resp.data.resultCode === 0) {
-                                    props.onClickUnfollow(props.id);
-                                }
-                            });
+                        usersAPI.userUnfollow(props.id).then((data) => {
+                            if (data.resultCode === 0) {
+                                props.onClickUnfollow(props.id);
+                            }
+                        });
                     }}
                     className={style.button}
                 >
@@ -40,23 +29,11 @@ const User = (props) => {
             ) : (
                 <button
                     onClick={() => {
-                        axios
-                            .post(
-                                `https://social-network.samuraijs.com/api/1.0//follow/${props.id}`,
-                                {},
-                                {
-                                    withCredentials: true,
-                                    headers: {
-                                        "API-KEY":
-                                            "5aadb8d8-c85b-45a8-8a26-0a0f38402345",
-                                    },
-                                }
-                            )
-                            .then((resp) => {
-                                if (resp.data.resultCode === 0) {
-                                    props.onClickFollow(props.id);
-                                }
-                            });
+                        usersAPI.userFollow(props.id).then((data) => {
+                            if (data.resultCode === 0) {
+                                props.onClickFollow(props.id);
+                            }
+                        });
                     }}
                     className={style.button}
                 >

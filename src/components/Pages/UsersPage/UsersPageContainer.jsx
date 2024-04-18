@@ -1,6 +1,5 @@
 import React from "react";
 import UsersPage from "./UsersPage";
-import axios from "axios";
 import { connect } from "react-redux";
 import {
     onClickFollow,
@@ -11,6 +10,7 @@ import {
     setIsFetching,
 } from "../../../redux/usersReducer";
 import preloader from "../../../logo.svg";
+import { usersAPI } from "../../../api/usersAPI";
 
 class UsersPageContainer extends React.Component {
     // eslint-disable-next-line
@@ -19,37 +19,23 @@ class UsersPageContainer extends React.Component {
     }
     componentDidMount = () => {
         this.props.setIsFetching(true);
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-                {
-                    withCredentials: true,
-                }
-            )
-            .then((resp) => {
-                this.props.setUsers(resp.data.items);
+        usersAPI
+            .getUsers(this.props.setCurrentPage, this.props.pageSize)
+            .then((data) => {
+                this.props.setUsers(data.items);
                 this.props.setIsFetching(false);
                 // this.props.setUsersCount(resp.data.totalCount);
-                console.log(resp.data.items, "DidMount");
             });
     };
     render = () => {
         const onPageChange = (page) => {
             this.props.setCurrentPage(page);
             this.props.setIsFetching(true);
-            axios
-                .get(
-                    `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`,
-                    {
-                        withCredentials: true,
-                    }
-                )
-                .then((resp) => {
-                    this.props.setUsers(resp.data.items);
-                    this.props.setIsFetching(false);
-                    // this.props.setUsersCount(resp.data.totalCount);
-                    console.log(resp.data.items, "onPageChange");
-                });
+            usersAPI.getUsers(page, this.props.pageSize).then((data) => {
+                this.props.setUsers(data.items);
+                this.props.setIsFetching(false);
+                // this.props.setUsersCount(resp.data.totalCount);
+            });
         };
         return (
             <div>

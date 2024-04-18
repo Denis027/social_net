@@ -2,8 +2,8 @@ import React from "react";
 import Header from "./Header";
 import { connect } from "react-redux";
 import { setAuthUserData } from "../../redux/authReducer";
-import axios from "axios";
 import style from "./Header.module.css";
+import { usersAPI } from "../../api/usersAPI";
 
 class HeaderContainer extends React.Component {
     // eslint-disable-next-line
@@ -11,17 +11,12 @@ class HeaderContainer extends React.Component {
         super(props);
     }
     componentDidMount() {
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-                withCredentials: true,
-            })
-            .then((resp) => {
-                if (resp.data.resultCode === 0) {
-                    this.props.setAuthUserData(resp.data.data);
-                    console.log(this.props.authUserData);
-                    console.log(resp.data);
-                }
-            });
+        usersAPI.getAuthMe().then((data) => {
+            console.log(data);
+            if (data.resultCode === 0) {
+                this.props.setAuthUserData(data.data);
+            }
+        });
     }
     render() {
         return (
