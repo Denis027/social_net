@@ -2,6 +2,7 @@ import Dialog from "./Dialog/Dialog";
 import style from "./Dialogs.module.css";
 import Message from "./Dialog/Message/Message";
 import React from "react";
+import { Navigate } from "react-router-dom";
 
 const Dialogs = (props) => {
     let newMessageElement = React.createRef();
@@ -29,26 +30,30 @@ const Dialogs = (props) => {
     return (
         <div>
             <h1 className={style.title}>Dialogs</h1>
-            <div className={style.dialogs}>
-                <div className={style.dialogItems}>{dialogEl}</div>
-                <div className={style.messages}>
-                    {messageEl}
-                    <div className={style.send_mess}>
-                        <textarea
-                            onChange={onTextChange}
-                            ref={newMessageElement}
-                            className={style.text}
-                            value={props.dialogsPage.newMessageText}
-                        ></textarea>
-                        <button
-                            onClick={onSendButton}
-                            className={style.sendButton}
-                        >
-                            send
-                        </button>
+            {props.isAuth ? (
+                <div className={style.dialogs}>
+                    <div className={style.dialogItems}>{dialogEl}</div>
+                    <div className={style.messages}>
+                        {messageEl}
+                        <div className={style.send_mess}>
+                            <textarea
+                                onChange={onTextChange}
+                                ref={newMessageElement}
+                                className={style.text}
+                                value={props.dialogsPage.newMessageText}
+                            ></textarea>
+                            <button
+                                onClick={onSendButton}
+                                className={style.sendButton}
+                            >
+                                send
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            ) : (
+                <Navigate to="/login" />
+            )}
         </div>
     );
 };

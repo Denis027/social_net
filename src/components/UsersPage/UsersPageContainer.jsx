@@ -5,8 +5,8 @@ import {
     userFollow,
     userUnfollow,
     getUsers,
-} from "../../../redux/usersReducer";
-import Preloader from "../../Preloader";
+} from "../../redux/usersReducer";
+import Preloader from "../Preloader";
 
 class UsersPageContainer extends React.Component {
     // eslint-disable-next-line

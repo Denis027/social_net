@@ -6,10 +6,14 @@ import {
     getUserProfile,
     onPostChange,
     addNewPost,
-} from "../../../redux/profileReducer";
+} from "../../redux/profileReducer";
 import MyPosts from "./MyPosts/MyPosts";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-// import { usersAPI } from "../../../api/usersAPI";
+import {
+    useLocation,
+    useNavigate,
+    useParams,
+    Navigate,
+} from "react-router-dom";
 
 class ProfileContainer extends React.Component {
     // eslint-disable-next-line
@@ -21,6 +25,10 @@ class ProfileContainer extends React.Component {
         this.props.getUserProfile(userId);
     };
     render = () => {
+        if (!this.props.isAuth) {
+            console.log(this.props.isAuth);
+            return <Navigate to="/login" />;
+        }
         return (
             <div className={style.ProfileWrapper}>
                 <h1 className={style.title}>Profile</h1>
@@ -48,6 +56,7 @@ const withRouter = (Component) => {
 const mapStateToProps = (state) => {
     return {
         profilePage: state.profilePage,
+        isAuth: state.auth.isAuth,
     };
 };
 

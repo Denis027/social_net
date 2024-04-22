@@ -2,13 +2,14 @@ import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import ProfileContainer from "./components/Pages/Profile/ProfileContainer";
-import Music from "./components/Pages/Music/Music";
-import Settings from "./components/Pages/Settings/Settings";
-import News from "./components/Pages/News/News";
-import DialogsContainer from "./components/Pages/Dialogs/DialogsContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import Music from "./components/Music/Music";
+import Settings from "./components/Settings/Settings";
+import News from "./components/News/News";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import NavContainer from "./components/Nav/NavContainer";
-import UsersPageContainer from "./components/Pages/UsersPage/UsersPageContainer";
+import UsersPageContainer from "./components/UsersPage/UsersPageContainer";
+import Login from "./components/Login/Login";
 
 const App = (props) => {
     return (
@@ -26,6 +27,7 @@ const App = (props) => {
                     <Route path="/music/*" element={<Music />} />
                     <Route path="/settings/*" element={<Settings />} />
                     <Route path="/news/*" element={<News />} />
+                    <Route path="/login/*" element={<Login />} />
                 </Routes>
             </div>
         </div>

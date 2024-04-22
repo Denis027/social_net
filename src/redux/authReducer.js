@@ -6,7 +6,7 @@ let initialState = {
     id: null,
     email: null,
     login: null,
-    isFetching: false,
+    isAuth: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -16,6 +16,7 @@ const authReducer = (state = initialState, action) => {
             stateCopy = {
                 ...state,
                 ...action.data,
+                isAuth: true,
             };
             return stateCopy;
         default:
