@@ -16,8 +16,8 @@ export const usersAPI = {
                 return response.data;
             });
     },
-    getUserProfile(userId = 30973) {
-        return instans.get(`profile/${userId}`).then((response) => {
+    getUserProfilePage(userId) {
+        return instans.get(`profile/` + userId).then((response) => {
             return response.data;
         });
     },
@@ -32,7 +32,6 @@ export const usersAPI = {
         });
     },
     getAuthMe() {
-        
         return instans.get(`auth/me`).then((response) => {
             return response.data;
         });

@@ -67,8 +67,8 @@ const UsersPage = (props) => {
                             id={user.id}
                             // status={user.status}
                             followed={user.followed}
-                            onClickUnfollow={props.onClickUnfollow}
-                            onClickFollow={props.onClickFollow}
+                            userUnfollow={props.userUnfollow}
+                            userFollow={props.userFollow}
                         />
                     ))}
                 </div>

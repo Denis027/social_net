@@ -3,13 +3,13 @@ import ProfileInfo from "./ProfileInfo";
 import style from "./ProfileContainer.module.css";
 import { connect } from "react-redux";
 import {
-    setUserProfile,
+    getUserProfile,
     onPostChange,
     addNewPost,
 } from "../../../redux/profileReducer";
 import MyPosts from "./MyPosts/MyPosts";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { usersAPI } from "../../../api/usersAPI";
+// import { usersAPI } from "../../../api/usersAPI";
 
 class ProfileContainer extends React.Component {
     // eslint-disable-next-line
@@ -17,12 +17,8 @@ class ProfileContainer extends React.Component {
         super(props);
     }
     componentDidMount = () => {
-        usersAPI
-            .getUserProfile(this.props.router.params.userId)
-            .then((data) => {
-                this.props.setUserProfile(data);
-                // this.props.setUsersCount(data.totalCount);
-            });
+        let userId = this.props.router.params.userId;
+        this.props.getUserProfile(userId);
     };
     render = () => {
         return (
@@ -46,7 +42,6 @@ const withRouter = (Component) => {
         let params = useParams();
         return <Component {...props} router={{ location, navigate, params }} />;
     };
-
     return ComponentWithRouterProp;
 };
 
@@ -57,7 +52,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    setUserProfile,
+    getUserProfile,
     addNewPost,
     onPostChange,
 })(withRouter(ProfileContainer));

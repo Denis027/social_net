@@ -2,15 +2,11 @@ import React from "react";
 import UsersPage from "./UsersPage";
 import { connect } from "react-redux";
 import {
-    onClickFollow,
-    onClickUnfollow,
-    setUsers,
-    setUsersCount,
-    setCurrentPage,
-    setIsFetching,
+    userFollow,
+    userUnfollow,
+    getUsers,
 } from "../../../redux/usersReducer";
-import preloader from "../../../logo.svg";
-import { usersAPI } from "../../../api/usersAPI";
+import Preloader from "../../Preloader";
 
 class UsersPageContainer extends React.Component {
     // eslint-disable-next-line
@@ -18,36 +14,26 @@ class UsersPageContainer extends React.Component {
         super(props);
     }
     componentDidMount = () => {
-        this.props.setIsFetching(true);
-        usersAPI
-            .getUsers(this.props.setCurrentPage, this.props.pageSize)
-            .then((data) => {
-                this.props.setUsers(data.items);
-                this.props.setIsFetching(false);
-                // this.props.setUsersCount(resp.data.totalCount);
-            });
+        this.props.getUsers(
+            this.props.usersList.currentPage,
+            this.props.usersList.pageSize
+        );
     };
     render = () => {
         const onPageChange = (page) => {
-            this.props.setCurrentPage(page);
-            this.props.setIsFetching(true);
-            usersAPI.getUsers(page, this.props.pageSize).then((data) => {
-                this.props.setUsers(data.items);
-                this.props.setIsFetching(false);
-                // this.props.setUsersCount(resp.data.totalCount);
-            });
+            this.props.getUsers(page, this.props.usersList.pageSize);
         };
         return (
             <div>
                 {this.props.usersList.isFetching ? (
-                    <img alt="Logo_loading" src={preloader}></img>
+                    <Preloader />
                 ) : (
                     <UsersPage
                         users={this.props.users}
                         usersList={this.props.usersList}
                         onPageChange={onPageChange}
-                        onClickFollow={this.props.onClickFollow}
-                        onClickUnfollow={this.props.onClickUnfollow}
+                        userFollow={this.props.userFollow}
+                        userUnfollow={this.props.userUnfollow}
                         setUsersCount={this.props.setUsersCount}
                     />
                 )}
@@ -64,10 +50,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    onClickFollow,
-    onClickUnfollow,
-    setUsers,
-    setUsersCount,
-    setCurrentPage,
-    setIsFetching,
+    userFollow,
+    userUnfollow,
+    getUsers,
 })(UsersPageContainer);

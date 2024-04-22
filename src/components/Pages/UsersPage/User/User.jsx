@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./User.module.css";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../../../api/usersAPI";
 
 const User = (props) => {
     return (
@@ -15,36 +14,22 @@ const User = (props) => {
             </NavLink>
             {props.followed ? (
                 <button
-                    onClick={() => {
-                        usersAPI.userUnfollow(props.id).then((data) => {
-                            if (data.resultCode === 0) {
-                                props.onClickUnfollow(props.id);
-                            }
-                        });
-                    }}
+                    onClick={() => props.userUnfollow(props.id)}
                     className={style.button}
                 >
                     Unfollow
                 </button>
             ) : (
                 <button
-                    onClick={() => {
-                        usersAPI.userFollow(props.id).then((data) => {
-                            if (data.resultCode === 0) {
-                                props.onClickFollow(props.id);
-                            }
-                        });
-                    }}
+                    onClick={() => props.userFollow(props.id)}
                     className={style.button}
                 >
                     Follow
                 </button>
             )}
-
             <b className={style.name}>{props.name}</b>
             <b className={style.id}>ID:{props.id}</b>
             <div className={style.location}>city: , country:</div>
-
             <div className={style.status}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Dolorem, id quos iure provident sint dolores eaque, esse dolor

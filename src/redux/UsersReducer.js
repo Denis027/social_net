@@ -1,11 +1,11 @@
-// import axios from "axios";
+import { usersAPI } from "../api/usersAPI";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 const SET_USERS_COUNT = "SET_USERS_COUNT";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-const TOOGLE_IS_FETCHING = 'TOOGLE_IS_FETCHING';
+const TOOGLE_IS_FETCHING = "TOOGLE_IS_FETCHING";
 
 let initialState = {
     users: [
@@ -93,15 +93,15 @@ const usersReducer = (state = initialState, action) => {
                 },
             };
             return stateCopy;
-            case TOOGLE_IS_FETCHING:
-                stateCopy = {
-                    ...state,
-                    usersList: {
-                        ...state.usersList,
-                        isFetching: action.isFetching,
-                    },
-                };
-                return stateCopy;
+        case TOOGLE_IS_FETCHING:
+            stateCopy = {
+                ...state,
+                usersList: {
+                    ...state.usersList,
+                    isFetching: action.isFetching,
+                },
+            };
+            return stateCopy;
         default:
             return state;
     }
@@ -124,6 +124,36 @@ export const setCurrentPage = (currentPage) => {
 };
 export const setIsFetching = (isFetching) => {
     return { type: TOOGLE_IS_FETCHING, isFetching };
+};
+
+export const getUsers = (page, pageSize) => {
+    return (dispatch) => {
+        dispatch(setCurrentPage(page));
+        dispatch(setIsFetching(true));
+        usersAPI.getUsers(page, pageSize).then((data) => {
+            dispatch(setUsers(data.items));
+            dispatch(setIsFetching(false));
+            // dispatch(setUsersCount(resp.data.totalCount));
+        });
+    };
+};
+export const userFollow = (userId) => {
+    return (dispatch) => {
+        usersAPI.userFollow(userId).then((data) => {
+            if (data.resultCode === 0) {
+                dispatch(onClickFollow(userId));
+            }
+        });
+    };
+};
+export const userUnfollow = (userId) => {
+    return (dispatch) => {
+        usersAPI.userUnfollow(userId).then((data) => {
+            if (data.resultCode === 0) {
+                dispatch(onClickUnfollow(userId));
+            }
+        });
+    };
 };
 
 export default usersReducer;

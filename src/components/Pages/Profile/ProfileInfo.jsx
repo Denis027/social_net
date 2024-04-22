@@ -1,12 +1,12 @@
 import React from "react";
 import style from "./ProfileInfo.module.css";
-import preloader from "../../../logo.svg";
+import Preloader from "../../Preloader";
 
 const ProfileInfo = (props) => {
     return (
         <div>
             {!props.profilePage.profile ? (
-                <img alt="Logo_loading" src={preloader}></img>
+                <Preloader />
             ) : (
                 <div className={style.ProfileInfoWrapper}>
                     <img
