@@ -1,3 +1,5 @@
+import { fishText } from "../components/Fish";
+
 const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT";
 const SEND_NEW_MESSAGE = "SEND-NEW-MESSAGE";
 
@@ -10,8 +12,7 @@ let initialState = {
             ava_alt: "ava",
             ava_src:
                 "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
-            message:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum voluptate natus quasi.",
+            message: fishText,
         },
         {
             id: "2",
@@ -20,8 +21,7 @@ let initialState = {
             ava_src:
                 "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
 
-            message:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum voluptate natus quasi.",
+            message: fishText,
         },
         {
             id: "3",
@@ -30,8 +30,7 @@ let initialState = {
             ava_src:
                 "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
 
-            message:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum voluptate natus quasi.",
+            message: fishText,
         },
         {
             id: "4",
@@ -40,8 +39,7 @@ let initialState = {
             ava_src:
                 "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
 
-            message:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum voluptate natus quasi.",
+            message: fishText,
         },
         {
             id: "5",
@@ -50,40 +48,34 @@ let initialState = {
             ava_src:
                 "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
 
-            message:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum voluptate natus quasi.",
+            message: fishText,
         },
     ],
     messagesData: [
         {
             id: 1,
             my_message: "false",
-            message:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum voluptate natus quasi. Assumenda corporis eaque maxime sequi at non quibusdam quae exercitationem dicta veritatis, in placeat tenetur consectetur impedit laborum!",
+            message: fishText,
         },
         {
             id: 2,
             my_message: "true",
-            message:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum voluptate natus quasi. Assumenda corporis eaque maxime sequi at non quibusdam quae exercitationem dicta veritatis, in placeat tenetur consectetur impedit laborum!",
+            message: fishText,
         },
         {
             id: 3,
             my_message: "true",
-            message:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum voluptate natus quasi. Assumenda corporis eaque maxime sequi at non quibusdam quae exercitationem dicta veritatis, in placeat tenetur consectetur impedit laborum!",
+            message: fishText,
         },
         {
             id: 4,
             my_message: "false",
-            message:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum voluptate natus quasi. Assumenda corporis eaque maxime sequi at non quibusdam quae exercitationem dicta veritatis, in placeat tenetur consectetur impedit laborum!",
+            message: fishText,
         },
         {
             id: 5,
             my_message: "false",
-            message:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum voluptate natus quasi. Assumenda corporis eaque maxime sequi at non quibusdam quae exercitationem dicta veritatis, in placeat tenetur consectetur impedit laborum!",
+            message: fishText,
         },
     ],
 };
@@ -111,10 +103,10 @@ const dialogsReducer = (state = initialState, action) => {
     }
 };
 
-export const updateMessageTextActionCreator = (newMessageText) => {
+export const updateMessageText = (newMessageText) => {
     return { type: "UPDATE-MESSAGE-TEXT", newMessageText: newMessageText };
 };
-export const sendNewMessageActionCreator = () => {
+export const sendNewMessage = () => {
     return { type: "SEND-NEW-MESSAGE" };
 };
 

@@ -2,11 +2,10 @@ import Dialog from "./Dialog/Dialog";
 import style from "./Dialogs.module.css";
 import Message from "./Dialog/Message/Message";
 import React from "react";
-import { Navigate } from "react-router-dom";
 
 const Dialogs = (props) => {
-    let newMessageElement = React.createRef();
-    let dialogEl = props.dialogsPage.dialogsData.map((d) => (
+    let newMessageItem = React.createRef();
+    let dialogItem = props.dialogsPage.dialogsData.map((d) => (
         <Dialog
             my_message={d.my_message}
             alt={d.ava_alt}
@@ -17,11 +16,11 @@ const Dialogs = (props) => {
             message={d.message}
         />
     ));
-    let messageEl = props.dialogsPage.messagesData.map((m) => (
+    let messageItem = props.dialogsPage.messagesData.map((m) => (
         <Message key={m.id} my_message={m.my_message} message={m.message} />
     ));
     let onTextChange = () => {
-        let newMessageText = newMessageElement.current.value;
+        let newMessageText = newMessageItem.current.value;
         props.onMessageChange(newMessageText);
     };
     let onSendButton = () => {
@@ -30,15 +29,15 @@ const Dialogs = (props) => {
     return (
         <div>
             <h1 className={style.title}>Dialogs</h1>
-            {props.isAuth ? (
+            {
                 <div className={style.dialogs}>
-                    <div className={style.dialogItems}>{dialogEl}</div>
+                    <div className={style.dialogItems}>{dialogItem}</div>
                     <div className={style.messages}>
-                        {messageEl}
-                        <div className={style.send_mess}>
+                        {messageItem}
+                        <div className={style.send_message}>
                             <textarea
                                 onChange={onTextChange}
-                                ref={newMessageElement}
+                                ref={newMessageItem}
                                 className={style.text}
                                 value={props.dialogsPage.newMessageText}
                             ></textarea>
@@ -51,9 +50,7 @@ const Dialogs = (props) => {
                         </div>
                     </div>
                 </div>
-            ) : (
-                <Navigate to="/login" />
-            )}
+            }
         </div>
     );
 };

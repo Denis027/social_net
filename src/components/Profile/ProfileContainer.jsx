@@ -8,12 +8,9 @@ import {
     addNewPost,
 } from "../../redux/profileReducer";
 import MyPosts from "./MyPosts/MyPosts";
-import {
-    useLocation,
-    useNavigate,
-    useParams,
-    Navigate,
-} from "react-router-dom";
+import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { withRouter } from "../../hoc/withRouter";
 
 class ProfileContainer extends React.Component {
     // eslint-disable-next-line
@@ -25,10 +22,6 @@ class ProfileContainer extends React.Component {
         this.props.getUserProfile(userId);
     };
     render = () => {
-        if (!this.props.isAuth) {
-            console.log(this.props.isAuth);
-            return <Navigate to="/login" />;
-        }
         return (
             <div className={style.ProfileWrapper}>
                 <h1 className={style.title}>Profile</h1>
@@ -43,16 +36,6 @@ class ProfileContainer extends React.Component {
     };
 }
 
-const withRouter = (Component) => {
-    const ComponentWithRouterProp = (props) => {
-        let location = useLocation();
-        let navigate = useNavigate();
-        let params = useParams();
-        return <Component {...props} router={{ location, navigate, params }} />;
-    };
-    return ComponentWithRouterProp;
-};
-
 const mapStateToProps = (state) => {
     return {
         profilePage: state.profilePage,
@@ -60,8 +43,12 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, {
-    getUserProfile,
-    addNewPost,
-    onPostChange,
-})(withRouter(ProfileContainer));
+export default compose(
+    withAuthRedirect,
+    withRouter,
+    connect(mapStateToProps, {
+        getUserProfile,
+        addNewPost,
+        onPostChange,
+    })
+)(ProfileContainer);

@@ -21,7 +21,7 @@
     grid-area: loc;
 }
 
-.avatarka {
+.avaWrapper img {
     display: grid;
     grid-area: ava;
     align-items: center;

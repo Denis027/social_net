@@ -6,6 +6,8 @@ const News = (props) => {
     return (
         <div className={style.title}>
             <h1>News</h1>
+            <h2>Hello world</h2>
+            <textarea></textarea>
         </div>
     );
 };

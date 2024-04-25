@@ -6,7 +6,6 @@ const SET_USERS = "SET_USERS";
 const SET_USERS_COUNT = "SET_USERS_COUNT";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const TOOGLE_IS_FETCHING = "TOOGLE_IS_FETCHING";
-
 let initialState = {
     users: [
         {
