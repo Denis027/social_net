@@ -1,7 +1,9 @@
-.ProfileInfo{
-    margin-bottom: 50px;
-}
-
 .title {
     color: aquamarine;
 }
+
+.profileInfoWrapper {
+    margin-bottom: 50px;
+}
+
+

@@ -9,7 +9,7 @@ import {
 } from "../../redux/profileReducer";
 import MyPosts from "./MyPosts/MyPosts";
 import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+// import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { withRouter } from "../../hoc/withRouter";
 
 class ProfileContainer extends React.Component {
@@ -25,12 +25,16 @@ class ProfileContainer extends React.Component {
         return (
             <div className={style.ProfileWrapper}>
                 <h1 className={style.title}>Profile</h1>
-                <ProfileInfo profilePage={this.props.profilePage} />
-                <MyPosts
-                    onPostChange={this.props.onPostChange}
-                    addNewPost={this.props.addNewPost}
-                    profilePage={this.props.profilePage}
-                />
+                <div className={style.profileInfoWrapper}>
+                    <ProfileInfo profilePage={this.props.profilePage} />
+                </div>
+                <div className={style.myPostWrapper}>
+                    <MyPosts
+                        onPostChange={this.props.onPostChange}
+                        addNewPost={this.props.addNewPost}
+                        profilePage={this.props.profilePage}
+                    />
+                </div>
             </div>
         );
     };
@@ -44,7 +48,7 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(
-    withAuthRedirect,
+    // withAuthRedirect,
     withRouter,
     connect(mapStateToProps, {
         getUserProfile,

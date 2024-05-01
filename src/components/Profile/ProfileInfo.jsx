@@ -2,6 +2,7 @@ import React from "react";
 import style from "./ProfileInfo.module.css";
 import Preloader from "../Preloader";
 import { fishText, myPhoto } from "../Fish";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
     return (
@@ -13,6 +14,9 @@ const ProfileInfo = (props) => {
                     {props.profilePage.profile.photos.large == null
                         ? myPhoto
                         : props.profilePage.profile.photos.large}
+                    <div className={style.status}>
+                        <ProfileStatus status="Hello world" />
+                    </div>
                     <h2 className={style.itemName}>
                         {props.profilePage.profile.fullName == null
                             ? "User Name"
