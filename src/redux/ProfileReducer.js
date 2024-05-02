@@ -3,6 +3,7 @@ import { usersAPI } from "../api/usersAPI";
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
 const ADD_NEW_POST = "ADD-NEW-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_PROFILE_STATUS = "SET_PROFILE_STATUS"
 
 let initialState = {
     newPostText: "kek",
@@ -40,6 +41,7 @@ let initialState = {
         },
     ],
     profile: null,
+    profileStatus: "Hello World",
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -78,6 +80,13 @@ const profileReducer = (state = initialState, action) => {
             };
             return stateCopy;
         }
+        case SET_PROFILE_STATUS: {
+            stateCopy = {
+                ...state,
+                profileStatus: action.profileStatus,
+            };
+            return stateCopy;
+        }
         default:
             return state;
     }
@@ -92,6 +101,30 @@ export const addNewPost = () => {
 export const setUserProfile = (profile) => {
     return { type: SET_USER_PROFILE, profile };
 };
+
+export const setProfileStatus = (profileStatus) => {
+    return { type: SET_PROFILE_STATUS, profileStatus };
+};
+
+
+export const getProfileStatus =
+    (userId = 30973) =>
+    (dispatch) => {
+        usersAPI.getProfileStatus(userId).then((data) => {
+            dispatch(setProfileStatus(data));
+            // dispatch(setUsersCount(data.totalCount));
+        });
+    };
+
+export const editProfileStatus =
+    (profileStatus) =>
+    (dispatch) => {
+        usersAPI.setProfileStatus(profileStatus).then((data) => {
+            dispatch(setProfileStatus(data));
+            // dispatch(setUsersCount(data.totalCount));
+        });
+    };
+
 
 export const getUserProfile =
     (userId = 30973) =>

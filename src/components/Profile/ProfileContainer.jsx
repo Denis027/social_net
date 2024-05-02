@@ -4,6 +4,8 @@ import style from "./ProfileContainer.module.css";
 import { connect } from "react-redux";
 import {
     getUserProfile,
+    getProfileStatus,
+    editProfileStatus,
     onPostChange,
     addNewPost,
 } from "../../redux/profileReducer";
@@ -20,13 +22,14 @@ class ProfileContainer extends React.Component {
     componentDidMount = () => {
         let userId = this.props.router.params.userId;
         this.props.getUserProfile(userId);
+        this.props.getProfileStatus(userId)
     };
     render = () => {
         return (
             <div className={style.ProfileWrapper}>
                 <h1 className={style.title}>Profile</h1>
                 <div className={style.profileInfoWrapper}>
-                    <ProfileInfo profilePage={this.props.profilePage} />
+                    <ProfileInfo profilePage={this.props.profilePage} editProfileStatus={this.props.editProfileStatus} />
                 </div>
                 <div className={style.myPostWrapper}>
                     <MyPosts
@@ -52,6 +55,8 @@ export default compose(
     withRouter,
     connect(mapStateToProps, {
         getUserProfile,
+        getProfileStatus,
+        editProfileStatus,
         addNewPost,
         onPostChange,
     })
