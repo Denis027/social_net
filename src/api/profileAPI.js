@@ -8,14 +8,7 @@ const instans = axios.create({
   },
 });
 
-export const usersAPI = {
-  getUsers(currentPage = 1, pageSize = 10) {
-    return instans
-      .get(`users?page=${currentPage}&count=${pageSize}`)
-      .then((response) => {
-        return response.data;
-      });
-  },
+export const profileAPI = {
   getUserProfilePage(userId) {
     return instans.get(`profile/` + userId).then((response) => {
       return response.data;
@@ -28,11 +21,6 @@ export const usersAPI = {
   },
   userUnfollow(userId = 30973) {
     return instans.delete(`follow/${userId}`).then((response) => {
-      return response.data;
-    });
-  },
-  getAuthMe() {
-    return instans.get(`auth/me`).then((response) => {
       return response.data;
     });
   },

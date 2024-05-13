@@ -19,7 +19,7 @@ class ProfileContainer extends React.Component {
     constructor(props) {
         super(props);
     }
-    componentDidMount = () => {
+    componentDidMount = () => {   
         let userId = this.props.router.params.userId;
         this.props.getUserProfile(userId);
         this.props.getProfileStatus(userId)
