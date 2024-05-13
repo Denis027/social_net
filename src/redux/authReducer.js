@@ -8,8 +8,6 @@ let initialState = {
     email: null,
     login: null,
     isAuth: false,
-    password: null,
-    rememberMe: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -46,13 +44,12 @@ export const getAuthMe = () => (dispatch) => {
     });
 };
 
-export const getLoginMe = (authData) => (dispatch) => {
-    debugger
-    authAPI.getLoginMe(authData).then((data) => {
-        if (data.resultCode === 0) {
-            console.log(data)
+export const getLoginMe = (authData) =>{
+    authAPI.getLoginMe(authData).then((response) => {
+        if (response.resultCode === 0) {
+            console.log(response)
         }
-        console.log(data)
+        console.log(response)
     });
 };
 

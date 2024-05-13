@@ -2,7 +2,7 @@ import React from "react";
 import { Field, reduxForm } from 'redux-form';
 import { connect } from "react-redux";
 import getLoginMe from "../../redux/authReducer"
-import { authAPI } from "../../api/authAPI";
+// import { authAPI } from "../../api/authAPI";
 
 const LoginForm = (props) => {
         // console.log(formData)
@@ -16,10 +16,17 @@ const LoginForm = (props) => {
     );
 };
 
-const LoginContainer = (props) => {
+class LoginContainer extends React.Component {
+        // eslint-disable-next-line
+        constructor(props) {
+            super(props);
+        }
+        componentDidMount = () => {   
+
+        };
+        render(){
     const onSubmit = (values) => {
-        console.log(values);
-        authAPI.getLoginMe(values)
+        this.props.getLoginMe(values)
     };
     return (
         <div>
@@ -27,7 +34,7 @@ const LoginContainer = (props) => {
             <LoginReduxForm onSubmit={onSubmit} getLoginMe={getLoginMe} />
         </div>
     );
-};
+};}
 
 export const LoginReduxForm = reduxForm({   form: 'login', })(LoginForm);
 
