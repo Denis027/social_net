@@ -6,7 +6,7 @@ let newStatus = React.createRef();
 class ProfileStatus extends React.Component {
     state = {
         editMode: false,
-        profileStatus: this.props.ProfileStatus,
+        profileStatus: this.props.profileStatus,
         newStatusText: ""
     };
     changeStatus = (newText)=>{
@@ -21,7 +21,6 @@ class ProfileStatus extends React.Component {
         });
     };
     editModeOff = () => {
-        debugger
         this.props.editProfileStatus(this.state.profileStatus)
         this.setState({
             editMode: false,
@@ -52,7 +51,7 @@ class ProfileStatus extends React.Component {
                                 this.editModeOn();
                             }}
                         >
-                            {this.props.ProfileStatus}
+                            {this.props.profileStatus}
                         </span>
                     </div>
                 )}
