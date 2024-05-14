@@ -1,9 +1,9 @@
-import { usersAPI } from "../api/usersAPI";
+import { profileAPI } from "../api/usersAPI";
 
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
 const ADD_NEW_POST = "ADD-NEW-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_PROFILE_STATUS = "SET_PROFILE_STATUS"
+const SET_PROFILE_STATUS = "SET_PROFILE_STATUS";
 
 let initialState = {
     newPostText: "kek",
@@ -106,30 +106,26 @@ export const setProfileStatus = (profileStatus) => {
     return { type: SET_PROFILE_STATUS, profileStatus };
 };
 
-
 export const getProfileStatus =
     (userId = 30973) =>
     (dispatch) => {
-        usersAPI.getProfileStatus(userId).then((data) => {
+        profileAPI.getProfileStatus(userId).then((data) => {
             dispatch(setProfileStatus(data));
             // dispatch(setUsersCount(data.totalCount));
         });
     };
 
-export const editProfileStatus =
-    (profileStatus) =>
-    (dispatch) => {
-        usersAPI.setProfileStatus(profileStatus).then((data) => {
-            dispatch(setProfileStatus(data));
-            // dispatch(setUsersCount(data.totalCount));
-        });
-    };
-
+export const editProfileStatus = (profileStatus) => (dispatch) => {
+    profileAPI.setProfileStatus(profileStatus).then((data) => {
+        dispatch(setProfileStatus(data));
+        // dispatch(setUsersCount(data.totalCount));
+    });
+};
 
 export const getUserProfile =
     (userId = 30973) =>
     (dispatch) => {
-        usersAPI.getUserProfilePage(userId).then((data) => {
+        profileAPI.getUserProfilePage(userId).then((data) => {
             dispatch(setUserProfile(data));
             // dispatch(setUsersCount(data.totalCount));
         });
