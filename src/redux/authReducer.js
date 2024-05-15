@@ -44,15 +44,13 @@ export const getAuthMe = () => (dispatch) => {
     });
 };
 
-export const getLoginMe = (authData) =>{
+export const getLoginMe = (authData) => {
     authAPI.getLoginMe(authData).then((response) => {
         if (response.resultCode === 0) {
-            console.log(response)
+            console.log(response);
         }
-        console.log(response)
+        console.log(response);
     });
 };
-
-
 
 export default authReducer;
