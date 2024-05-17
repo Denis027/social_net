@@ -19,17 +19,20 @@ class ProfileContainer extends React.Component {
     constructor(props) {
         super(props);
     }
-    componentDidMount = () => {   
+    componentDidMount = () => {
         let userId = this.props.router.params.userId;
         this.props.getUserProfile(userId);
-        this.props.getProfileStatus(userId)
+        this.props.getProfileStatus(userId);
     };
     render = () => {
         return (
             <div className={style.ProfileWrapper}>
                 <h1 className={style.title}>Profile</h1>
                 <div className={style.profileInfoWrapper}>
-                    <ProfileInfo profilePage={this.props.profilePage} editProfileStatus={this.props.editProfileStatus} />
+                    <ProfileInfo
+                        profilePage={this.props.profilePage}
+                        editProfileStatus={this.props.editProfileStatus}
+                    />
                 </div>
                 <div className={style.myPostWrapper}>
                     <MyPosts

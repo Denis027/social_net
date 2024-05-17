@@ -7,12 +7,12 @@ class ProfileStatus extends React.Component {
     state = {
         editMode: false,
         profileStatus: this.props.profileStatus,
-        newStatusText: ""
+        newStatusText: "",
     };
-    changeStatus = (newText)=>{
+    changeStatus = (newText) => {
         this.setState({
             newStatusText: newText,
-            profileStatus: newText
+            profileStatus: newText,
         });
     };
     editModeOn = () => {
@@ -21,7 +21,7 @@ class ProfileStatus extends React.Component {
         });
     };
     editModeOff = () => {
-        this.props.editProfileStatus(this.state.profileStatus)
+        this.props.editProfileStatus(this.state.profileStatus);
         this.setState({
             editMode: false,
         });
@@ -32,7 +32,9 @@ class ProfileStatus extends React.Component {
                 {this.state.editMode ? (
                     <div>
                         <input
-                            onChange={()=>{this.changeStatus(newStatus.current.value)}}
+                            onChange={() => {
+                                this.changeStatus(newStatus.current.value);
+                            }}
                             ref={newStatus}
                             autoFocus={true}
                             onBlur={() => {
@@ -45,7 +47,6 @@ class ProfileStatus extends React.Component {
                 ) : (
                     <div>
                         <span
-                        
                             className={style.statusText}
                             onDoubleClick={() => {
                                 this.editModeOn();

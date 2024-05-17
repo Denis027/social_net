@@ -15,7 +15,10 @@ const ProfileInfo = (props) => {
                         ? myPhoto
                         : props.profilePage.profile.photos.large}
                     <div className={style.status}>
-                        <ProfileStatus profileStatus={props.profilePage.profileStatus} editProfileStatus={props.editProfileStatus} />
+                        <ProfileStatus
+                            profileStatus={props.profilePage.profileStatus}
+                            editProfileStatus={props.editProfileStatus}
+                        />
                     </div>
                     <h2 className={style.itemName}>
                         {props.profilePage.profile.fullName == null
