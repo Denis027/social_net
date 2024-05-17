@@ -5,9 +5,12 @@ import getLoginMe from "../../redux/authReducer";
 // import { authAPI } from "../../api/authAPI";
 
 const LoginForm = (props) => {
-    // console.log(formData)
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form
+            onSubmit={() => {
+                props.handleSubmit();
+            }}
+        >
             <div>
                 <Field name="email" placeholder="Email" component="input" />
             </div>
@@ -37,15 +40,18 @@ class LoginContainer extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    onSubmit(values) {
+        this.props.getLoginMe(values);
+    }
+
     componentDidMount = () => {};
+
     render() {
-        const onSubmit = (values) => {
-            this.props.getLoginMe(values);
-        };
         return (
             <div>
                 <h1>Login</h1>
-                <LoginReduxForm onSubmit={onSubmit} getLoginMe={getLoginMe} />
+                <LoginReduxForm onSubmit={this.onSubmit} />
             </div>
         );
     }
