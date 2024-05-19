@@ -6,28 +6,32 @@ import getLoginMe from "../../redux/authReducer";
 
 const LoginForm = (props) => {
     // console.log(formData)
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field name="email" placeholder="Email" component="input" />
+                <Field name="email" placeholder="email" component="input" />
             </div>
             <div>
                 <Field
                     name="password"
-                    placeholder="Password"
+                    placeholder="password"
                     component="input"
+                    type="password"
                 />
             </div>
             <div>
                 <Field
                     name="rememberMe"
-                    placeholder="RememberMe"
+                    placeholder="rememberMe"
                     component="input"
                     type="checkbox"
                 />
                 rememberMe
             </div>
-            <button type="submit">Login</button>
+            <button action="submit" type="submit">
+                Login
+            </button>
         </form>
     );
 };
@@ -37,15 +41,17 @@ class LoginContainer extends React.Component {
     constructor(props) {
         super(props);
     }
+    onSubmit = (authData) => {
+        this.props.getLoginMe(authData);
+    };
+
     componentDidMount = () => {};
+
     render() {
-        const onSubmit = (values) => {
-            this.props.getLoginMe(values);
-        };
         return (
             <div>
                 <h1>Login</h1>
-                <LoginReduxForm onSubmit={onSubmit} getLoginMe={getLoginMe} />
+                <LoginReduxForm onSubmit={this.onSubmit} />
             </div>
         );
     }
@@ -53,10 +59,4 @@ class LoginContainer extends React.Component {
 
 export const LoginReduxForm = reduxForm({ form: "login" })(LoginForm);
 
-const mapStateToProps = (state) => {
-    return {
-        auth: state.auth,
-    };
-};
-
-export default connect(mapStateToProps, { getLoginMe })(LoginContainer);
+export default connect(null, { getLoginMe })(LoginContainer);

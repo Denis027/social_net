@@ -8,8 +8,16 @@ const Header = (props) => {
     return (
         <div className={style.header}>
             {props.authUserData.isAuth ? (
-                
-                <div className={style.avaWrapper}><button onClick={()=>{authAPI.getLogoutMe()}}>Logout</button>{myPhoto}</div>
+                <div className={style.avaWrapper}>
+                    <button
+                        onClick={() => {
+                            authAPI.logoutMe();
+                        }}
+                    >
+                        Logout
+                    </button>
+                    {myPhoto}
+                </div>
             ) : (
                 <NavLink className={style.loginLink} to="/login">
                     Login
