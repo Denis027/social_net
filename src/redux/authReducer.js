@@ -38,15 +38,14 @@ export const getAuthMe = () => (dispatch) => {
     });
 };
 
-export const getLoginMe = (authData) => {
-    return (dispatch) => {
-        authAPI.loginMe(authData.email, authData.password, authData.rememberMe);
-        // .then((response) => {
-        //     if (response.resultCode === 0) {
-        //         dispatch(getAuthMe());
-        //     }
-        // });
-    };
+export const getLoginMePls = (authData) => (dispatch) => {
+    authAPI
+        .loginMe(authData.email, authData.password, authData.rememberMe)
+        .then((response) => {
+            if (response.resultCode === 0) {
+                dispatch(getAuthMe());
+            }
+        });
 };
 
 // export const getLoginMe = (authData) => {

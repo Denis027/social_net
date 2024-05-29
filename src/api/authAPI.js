@@ -15,7 +15,7 @@ export const authAPI = {
         });
     },
 
-    loginMe(email, password, rememberMe) {
+    loginMe(email, password, rememberMe = false) {
         return instans.post(`auth/login`, {
             email,
             password,

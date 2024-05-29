@@ -1,38 +1,36 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, Form, Formik } from "formik";
 import { connect } from "react-redux";
-import getLoginMe from "../../redux/authReducer";
+import getLoginMePls from "../../redux/authReducer";
 // import { authAPI } from "../../api/authAPI";
 
 const LoginForm = (props) => {
     // console.log(formData)
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <div>
             <div>
-                <Field name="email" placeholder="email" component="input" />
+                <Formik
+                    initialValues={{ email: "", password: "" }}
+                    onSubmit={(authData) => {
+                        console.log(authData);
+                        props.getLoginMePls(authData);
+                    }}
+                >
+                    {({ isSubmitting }) => (
+                        <Form>
+                            <div>
+                                <Field type="email" name="email"></Field>
+                            </div>
+                            <div>
+                                <Field type="password" name="password"></Field>
+                            </div>
+                            <button type="submit">Submit</button>
+                        </Form>
+                    )}
+                </Formik>
             </div>
-            <div>
-                <Field
-                    name="password"
-                    placeholder="password"
-                    component="input"
-                    type="password"
-                />
-            </div>
-            <div>
-                <Field
-                    name="rememberMe"
-                    placeholder="rememberMe"
-                    component="input"
-                    type="checkbox"
-                />
-                rememberMe
-            </div>
-            <button action="submit" type="submit">
-                Login
-            </button>
-        </form>
+        </div>
     );
 };
 
@@ -51,12 +49,10 @@ class LoginContainer extends React.Component {
         return (
             <div>
                 <h1>Login</h1>
-                <LoginReduxForm onSubmit={this.onSubmit} />
+                <LoginForm getLoginMePls={this.props.getLoginMePls} />
             </div>
         );
     }
 }
 
-export const LoginReduxForm = reduxForm({ form: "login" })(LoginForm);
-
-export default connect(null, { getLoginMe })(LoginContainer);
+export default connect(null, { getLoginMePls })(LoginContainer);
