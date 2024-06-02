@@ -32,8 +32,14 @@ export const getAuthMe = () => (dispatch) => {
     authAPI.getAuthMe().then((data) => {
         if (data.resultCode === 0) {
             console.log(data);
-            let { id, login, email } = data.data;
-            dispatch(setAuthUserData(id, login, email, true));
+            dispatch(
+                setAuthUserData(
+                    data.data.id,
+                    data.data.login,
+                    data.data.email,
+                    true
+                )
+            );
         }
     });
 };
@@ -47,11 +53,6 @@ export const getLoginMePls = (authData) => (dispatch) => {
             }
         });
 };
-
-// export const getLoginMe = (authData) => {
-//     debugger;
-//     authAPI.loginMe(authData.email, authData.password, authData.rememberMe);
-// };
 
 export const getLogoutMe = () => {
     return (dispatch) => {
