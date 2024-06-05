@@ -1,4 +1,4 @@
-import { usersAPI } from "../api/usersAPI";
+import { profileAPI } from "../api/profileAPI";
 
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
 const ADD_NEW_POST = "ADD-NEW-POST";
@@ -106,17 +106,17 @@ export const setProfileStatus = (profileStatus) => {
     return { type: SET_PROFILE_STATUS, profileStatus };
 };
 
-export const getProfileStatus =
-    (userId = 30973) =>
-    (dispatch) => {
-        usersAPI.getProfileStatus(userId).then((data) => {
+export const getProfileStatus = (userId = 30973) => {
+    return (dispatch) => {
+        profileAPI.getProfileStatus(userId).then((data) => {
             dispatch(setProfileStatus(data));
             // dispatch(setUsersCount(data.totalCount));
         });
     };
+};
 
 export const editProfileStatus = (profileStatus) => (dispatch) => {
-    usersAPI.setProfileStatus(profileStatus).then((response) => {
+    profileAPI.setProfileStatus(profileStatus).then((response) => {
         if (response.data.resultCode === 0) {
             dispatch(setProfileStatus(profileStatus));
         }
@@ -127,7 +127,7 @@ export const editProfileStatus = (profileStatus) => (dispatch) => {
 export const getUserProfile =
     (userId = 30973) =>
     (dispatch) => {
-        usersAPI.getUserProfilePage(userId).then((data) => {
+        profileAPI.getUserProfilePage(userId).then((data) => {
             dispatch(setUserProfile(data));
             // dispatch(setUsersCount(data.totalCount));
         });
