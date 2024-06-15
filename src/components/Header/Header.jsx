@@ -2,16 +2,15 @@ import React from "react";
 import style from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import { myPhoto } from "../Fish";
-import { authAPI } from "../../api/authAPI";
 
 const Header = (props) => {
     return (
         <div className={style.header}>
-            {props.authUserData.isAuth ? (
+            {props.isAuth ? (
                 <div className={style.avaWrapper}>
                     <button
                         onClick={() => {
-                            authAPI.logoutMe();
+                            props.getLogoutMe();
                         }}
                     >
                         Logout

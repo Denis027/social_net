@@ -3,6 +3,7 @@ import {
     combineReducers,
     legacy_createStore as createStore,
 } from "redux";
+// import { configureStore } from "@reduxjs/toolkit";
 import dialogsReducer from "./dialogsReducer";
 import profileReducer from "./profileReducer";
 import sideBarReducer from "./sidebarReducer";
@@ -19,5 +20,7 @@ const redusers = combineReducers({
 });
 
 const store = createStore(redusers, applyMiddleware(thunk));
+
+// const store = configureStore({ redusers });
 
 export default store;

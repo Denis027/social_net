@@ -1,43 +1,49 @@
 import React from "react";
-import { Field, Form, Formik } from "formik";
-import getLoginMePls from "../../redux/authReducer";
-import { useDispatch, useEffect, connect } from "react-redux";
-// import { authAPI } from "../../api/authAPI";
+import { connect, useDispatch } from "react-redux";
+import getLoginMe from "../../redux/authReducer";
+import { useFormik } from "formik";
 
 const LoginForm = (props) => {
     const dispatch = useDispatch();
+
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+            password: "",
+        },
+        onSubmit: (values) => {
+            console.log(values);
+            dispatch(props.getLoginMe(values));
+        },
+    });
 
     useEffect(() => {
         dispatch(props.getLoginMePls());
     });
     return (
-        <div>
+        <form onSubmit={formik.handleSubmit}>
             <div>
-                <Formik
-                    initialValues={{ email: "", password: "" }}
-                    onSubmit={(authData) => {
-                        console.log(authData);
-                        // authAPI.loginMe(
-                        //     authData.email,
-                        //     authData.password,
-                        //     authData.rememberMe
-                        // );
-                    }}
-                >
-                    {({ isSubmitting }) => (
-                        <Form>
-                            <div>
-                                <Field type="email" name="email"></Field>
-                            </div>
-                            <div>
-                                <Field type="password" name="password"></Field>
-                            </div>
-                            <button type="submit">Submit</button>
-                        </Form>
-                    )}
-                </Formik>
+                <label htmlFor="email">Email: </label>
+                <input
+                    id="email"
+                    name="email"
+                    type="text"
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                />
             </div>
-        </div>
+            <div>
+                <label htmlFor="password">Password: </label>
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                />
+            </div>
+            <button type="submit">Submit</button>
+        </form>
     );
 };
 
@@ -50,4 +56,10 @@ const LoginContainer = (props) => {
     );
 };
 
-export default connect(null, { getLoginMePls })(LoginContainer);
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth,
+    };
+};
+
+export default connect(mapStateToProps, { getLoginMe })(LoginContainer);

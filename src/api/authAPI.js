@@ -15,11 +15,9 @@ export const authAPI = {
         });
     },
 
-    loginMe(email, password, rememberMe = false) {
-        return instans.post(`auth/login/`, {
-            email,
-            password,
-            rememberMe,
+    loginMe(authData) {
+        return instans.post(`auth/login`, {
+            authData
         });
     },
 

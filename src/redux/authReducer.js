@@ -44,21 +44,21 @@ export const getAuthMe = () => (dispatch) => {
     });
 };
 
-export const getLoginMePls = (authData) => (dispatch) => {
-    authAPI
-        .loginMe(authData.email, authData.password, authData.rememberMe)
-        .then((response) => {
-            if (response.resultCode === 0) {
-                dispatch(getAuthMe());
-            }
-        });
+export const getLoginMe = (authData) => (dispatch) => {
+    authAPI.loginMe(authData).then((response) => {
+        if (response.data.resultCode === 0) {
+            console.log(response);
+            dispatch(getAuthMe());
+        }
+    });
 };
 
 export const getLogoutMe = () => {
     return (dispatch) => {
         authAPI.logoutMe().then((response) => {
-            if (response.resultCode === 0) {
-                dispatch(setAuthUserData());
+            if (response.data.resultCode === 0) {
+                console.log(response);
+                dispatch(getAuthMe());
             }
         });
     };
