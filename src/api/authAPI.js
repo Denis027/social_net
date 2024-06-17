@@ -15,9 +15,10 @@ export const authAPI = {
         });
     },
 
-    loginMe(authData) {
+    loginMe(email, password) {
         return instans.post(`auth/login`, {
-            authData
+            email,
+            password,
         });
     },
 

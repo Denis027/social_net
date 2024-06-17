@@ -1,19 +1,18 @@
 import React from "react";
-import { connect, useDispatch } from "react-redux";
-import getLoginMe from "../../redux/authReducer";
+import { connect } from "react-redux";
+// import getLoginMe from "../../redux/authReducer";
 import { useFormik } from "formik";
+import { authAPI } from "../../api/authAPI";
 
 const LoginForm = (props) => {
-    const dispatch = useDispatch();
-
     const formik = useFormik({
         initialValues: {
             email: "",
             password: "",
         },
-        onSubmit: (values) => {
-            console.log(values);
-            dispatch(props.getLoginMe(values));
+        onSubmit: (authData) => {
+            console.log(authData);
+            authAPI.loginMe(authData.email, authData.password);
         },
     });
 
@@ -55,7 +54,7 @@ class LoginContainer extends React.Component {
         return (
             <div>
                 <h1>Login</h1>
-                <LoginForm getLoginMe={this.props.getLoginMe} />
+                <LoginForm />
             </div>
         );
     };
@@ -67,4 +66,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { getLoginMe })(LoginContainer);
+export default connect(mapStateToProps, {})(LoginContainer);

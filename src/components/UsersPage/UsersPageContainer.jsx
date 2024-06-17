@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { userFollow, userUnfollow, getUsers } from "../../redux/usersReducer";
 import Preloader from "../Preloader";
 import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+// import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 class UsersPageContainer extends React.Component {
     // eslint-disable-next-line
@@ -48,6 +48,6 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(
-    withAuthRedirect,
+    // withAuthRedirect,
     connect(mapStateToProps, { userFollow, userUnfollow, getUsers })
 )(UsersPageContainer);

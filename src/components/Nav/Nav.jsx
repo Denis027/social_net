@@ -8,9 +8,9 @@ const Nav = (props) => {
         <div className={st.nav}>
             <nav>
                 <ul>
-                    <li className={st.item}>
+                    {/* <li className={st.item}>
                         <NavLink to="/home">Home</NavLink>
-                    </li>
+                    </li> */}
                     <li className={st.item}>
                         <NavLink to="/profile">Profile</NavLink>
                     </li>
@@ -20,7 +20,7 @@ const Nav = (props) => {
                     <li className={st.item}>
                         <NavLink to="/users">Users</NavLink>
                     </li>
-                    <li className={st.item}>
+                    {/* <li className={st.item}>
                         <NavLink to="/music">Music</NavLink>
                     </li>
                     <li className={st.item}>
@@ -28,7 +28,7 @@ const Nav = (props) => {
                     </li>
                     <li className={st.item}>
                         <NavLink to="/settings">Settings</NavLink>
-                    </li>
+                    </li> */}
                 </ul>
             </nav>
             <FriendsBar friendsList={props.friendsList} />
