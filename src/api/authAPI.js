@@ -23,6 +23,6 @@ export const authAPI = {
     },
 
     logoutMe() {
-        return instans.delete(`auth/login`);
+        return instans.delete(`auth/login/`);
     },
 };

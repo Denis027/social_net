@@ -106,14 +106,14 @@ export const setProfileStatus = (profileStatus) => {
     return { type: SET_PROFILE_STATUS, profileStatus };
 };
 
-export const getProfileStatus = (userId = 30973) => {
-    return (dispatch) => {
+export const getProfileStatus =
+    (userId = 30973) =>
+    (dispatch) => {
         profileAPI.getProfileStatus(userId).then((data) => {
             dispatch(setProfileStatus(data));
             // dispatch(setUsersCount(data.totalCount));
         });
     };
-};
 
 export const editProfileStatus = (profileStatus) => (dispatch) => {
     profileAPI.setProfileStatus(profileStatus).then((response) => {
