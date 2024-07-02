@@ -16,9 +16,9 @@ const LoginForm = (props) => {
         },
     });
 
-    useEffect(() => {
-        dispatch(props.getLoginMePls());
-    });
+    // useEffect(() => {
+    //     dispatch(props.getLoginMePls());
+    // });
     return (
         <form onSubmit={formik.handleSubmit}>
             <div>
