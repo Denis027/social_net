@@ -16,4 +16,14 @@ export const usersAPI = {
                 return response.data;
             });
     },
+    userFollow(userId) {
+        return instans.post(`follow/${userId}`).then((response) => {
+            return response.data;
+        });
+    },
+    userUnfollow(userId = 30973) {
+        return instans.delete(`follow/${userId}`).then((response) => {
+            return response.data;
+        });
+    },
 };
