@@ -13,7 +13,6 @@ import MyPosts from "./MyPosts/MyPosts";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { withRouter } from "../../hoc/withRouter";
-import { authAPI } from "../../api/authAPI";
 
 class ProfileContainer extends React.Component {
     // eslint-disable-next-line
@@ -63,6 +62,5 @@ export default compose(
         editProfileStatus,
         addNewPost,
         onPostChange,
-        authAPI,
     })
 )(ProfileContainer);

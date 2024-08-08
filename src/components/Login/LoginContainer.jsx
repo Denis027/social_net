@@ -1,8 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
-// import getLoginMe from "../../redux/authReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { getLoginMe, selectIsAuth } from "../../redux/slices/authSlice";
 import { useFormik } from "formik";
-import { authAPI } from "../../api/authAPI";
 
 const LoginForm = (props) => {
     const formik = useFormik({
@@ -11,62 +10,57 @@ const LoginForm = (props) => {
             password: "",
         },
         onSubmit: (authData) => {
-            console.log(authData);
-            authAPI.loginMe(authData.email, authData.password);
+            props.onSendData(authData);
         },
     });
 
-    // useEffect(() => {
-    //     dispatch(props.getLoginMePls());
-    // });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div>
-                <label htmlFor="email">Email: </label>
-                <input
-                    id="email"
-                    name="email"
-                    type="text"
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
-                />
-            </div>
-            <div>
-                <label htmlFor="password">Password: </label>
-                <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    onChange={formik.handleChange}
-                    value={formik.values.password}
-                />
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+        <div>
+            <form onSubmit={formik.handleSubmit}>
+                <div>
+                    <label htmlFor="email">Email: </label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="text"
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Password: </label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        onChange={formik.handleChange}
+                        value={formik.values.password}
+                    />
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     );
 };
 
-class LoginContainer extends React.Component {
-    // eslint-disable-next-line
-    constructor(props) {
-        super(props);
-    }
-    componentDidUpdate = () => {};
+const LoginContainer = () => {
+    const dispatch = useDispatch();
+    // const isAuth = useSelector(selectIsAuth);
 
-    render = () => {
-        return (
-            <div>
-                <h1>Login</h1>
-                <LoginForm />
-            </div>
-        );
+    const onSendData = (authData) => {
+        dispatch(getLoginMe(authData));
     };
-}
 
-const mapStateToProps = (state) => {
-    return {
-        isAuth: state.auth,
-    };
+    // if (isAuth) {
+    //     <redirect to={"/profile"} />;
+    // }
+
+    return (
+        <div>
+            <h1>Login</h1>
+            <LoginForm onSendData={onSendData} />
+        </div>
+    );
 };
 
-export default connect(mapStateToProps, {})(LoginContainer);
+export default LoginContainer;

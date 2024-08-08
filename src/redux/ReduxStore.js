@@ -3,7 +3,7 @@ import dialogsReducer from "./dialogsReducer";
 import profileReducer from "./profileReducer";
 import sideBarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
-import authReducer from "./authReducer";
+import authReducer from "./slices/authSlice";
 
 const rootReducer = combineReducers({
     dialogsPage: dialogsReducer,

@@ -15,10 +15,12 @@ export const authAPI = {
         });
     },
 
-    loginMe(email, password) {
-        return instans.post(`auth/login`, {
+    loginMe(email, password, rememberMe = false ) {
+        console.log(email, password);
+        return instans.post(`auth/login/`, {
             email,
             password,
+            rememberMe,
         });
     },
 
