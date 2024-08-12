@@ -11,7 +11,6 @@ import {
 } from "../../redux/profileReducer";
 import MyPosts from "./MyPosts/MyPosts";
 import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { withRouter } from "../../hoc/withRouter";
 
 class ProfileContainer extends React.Component {
@@ -49,12 +48,10 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         profilePage: state.profilePage,
-        isAuth: state.auth.isAuth,
     };
 };
 
 export default compose(
-    withAuthRedirect,
     withRouter,
     connect(mapStateToProps, {
         getUserProfile,

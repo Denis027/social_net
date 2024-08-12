@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthMe, selectIsAuth } from "./redux/slices/authSlice";
+//pages
 import HeaderContainer from "./components/Header/HeaderContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-// import Music from "./components/Music/Music";
-// import Settings from "./components/Settings/Settings";
-// import News from "./components/News/News";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import NavContainer from "./components/Nav/NavContainer";
 import UsersPageContainer from "./components/UsersPage/UsersPageContainer";
 import LoginContainer from "./components/Login/LoginContainer";
+import Preloader from "./components/Preloader";
 
 const App = (props) => {
+    const isAuth = useSelector(selectIsAuth);
+    const dispatch = useDispatch();
+    console.log(isAuth);
+    useEffect(() => {
+        dispatch(getAuthMe());
+    });
+
     return (
         <div className="app-wrapper">
             <HeaderContainer />
@@ -19,15 +27,36 @@ const App = (props) => {
             <div className="app-wrapper-content">
                 <Routes>
                     <Route
-                        path="/profile/:userId?/*"
-                        element={<ProfileContainer />}
+                        path="/login"
+                        element={
+                            isAuth ? (
+                                <Navigate to="/profile" />
+                            ) : (
+                                <LoginContainer />
+                            )
+                        }
                     />
-                    <Route path="/dialogs/*" element={<DialogsContainer />} />
+                    <Route
+                        path="/profile/:userId?/*"
+                        element={
+                            isAuth ? (
+                                <ProfileContainer />
+                            ) : (
+                                <Navigate to="/login" />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/dialogs/*"
+                        element={
+                            isAuth ? (
+                                <DialogsContainer />
+                            ) : (
+                                <Navigate to="/login" />
+                            )
+                        }
+                    />
                     <Route path="/users/*" element={<UsersPageContainer />} />
-                    {/* <Route path="/music/*" element={<Music />} />
-                    <Route path="/settings/*" element={<Settings />} />
-                    <Route path="/news/*" element={<News />} /> */}
-                    <Route path="/login/*" element={<LoginContainer />} />
                 </Routes>
             </div>
         </div>

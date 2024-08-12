@@ -40,7 +40,7 @@ class ProfileStatus extends React.Component {
                             onBlur={() => {
                                 this.editModeOff();
                             }}
-                            value={this.state.newStatusText}
+                            value={this.state.profileStatus}
                             type="text"
                         />
                     </div>
@@ -52,7 +52,7 @@ class ProfileStatus extends React.Component {
                                 this.editModeOn();
                             }}
                         >
-                            {this.props.profileStatus}
+                            {this.state.profileStatus}
                         </span>
                     </div>
                 )}

@@ -1,6 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getLoginMe, selectIsAuth } from "../../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
+import { getLoginMe } from "../../redux/slices/authSlice";
 import { useFormik } from "formik";
 
 const LoginForm = (props) => {
@@ -45,15 +45,10 @@ const LoginForm = (props) => {
 
 const LoginContainer = () => {
     const dispatch = useDispatch();
-    // const isAuth = useSelector(selectIsAuth);
 
     const onSendData = (authData) => {
         dispatch(getLoginMe(authData));
     };
-
-    // if (isAuth) {
-    //     <redirect to={"/profile"} />;
-    // }
 
     return (
         <div>

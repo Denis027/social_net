@@ -1,4 +1,4 @@
-import { profileAPI } from "../api/profileAPI";
+import { profileAPI } from "../api/samuraiAPI";
 
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
 const ADD_NEW_POST = "ADD-NEW-POST";
@@ -120,7 +120,6 @@ export const editProfileStatus = (profileStatus) => (dispatch) => {
         if (response.data.resultCode === 0) {
             dispatch(setProfileStatus(profileStatus));
         }
-        // dispatch(setUsersCount(data.totalCount));
     });
 };
 
@@ -129,7 +128,6 @@ export const getUserProfile =
     (dispatch) => {
         profileAPI.getUserProfilePage(userId).then((data) => {
             dispatch(setUserProfile(data));
-            // dispatch(setUsersCount(data.totalCount));
         });
     };
 

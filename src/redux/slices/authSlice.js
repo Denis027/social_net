@@ -1,5 +1,5 @@
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
-import { authAPI } from "../../api/authAPI";
+import { authAPI } from "../../api/samuraiAPI";
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
@@ -67,6 +67,7 @@ export const authSlice = createSliceWithThunks({
                     state.status = "Resolved";
                     if (action.payload.resultCode === 0) {
                         state.userId = action.payload.data.userId;
+                        state.isAuth = true;
                     } else {
                         state.error = action.payload.messages;
                     }
