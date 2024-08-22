@@ -8,6 +8,7 @@ const LoginForm = (props) => {
         initialValues: {
             email: "",
             password: "",
+            rememberMe: false,
         },
         onSubmit: (authData) => {
             props.onSendData(authData);
@@ -35,6 +36,16 @@ const LoginForm = (props) => {
                         type="password"
                         onChange={formik.handleChange}
                         value={formik.values.password}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="rememberMe">Remember me: </label>
+                    <input
+                        id="rememberMe"
+                        name="rememberMe"
+                        type="checkbox"
+                        onChange={formik.handleChange}
+                        value={formik.values.rememberMe}
                     />
                 </div>
                 <button type="submit">Submit</button>

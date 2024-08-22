@@ -7,28 +7,28 @@ import ProfileStatus from "./ProfileStatus";
 const ProfileInfo = (props) => {
     return (
         <div>
-            {!props.profilePage.profile ? (
+            {!props.profile ? (
                 <Preloader />
             ) : (
                 <div className={style.ProfileInfoWrapper}>
-                    {props.profilePage.profile.photos.large == null
+                    {!props.profile.photos.large
                         ? myPhoto
-                        : props.profilePage.profile.photos.large}
+                        : props.profile.photos.large}
                     <div className={style.status}>
                         <ProfileStatus
-                            profileStatus={props.profilePage.profileStatus}
+                            profileStatus={props.profileStatus}
                             editProfileStatus={props.editProfileStatus}
                         />
                     </div>
                     <h2 className={style.itemName}>
-                        {props.profilePage.profile.fullName == null
+                        {props.profile.fullName == null
                             ? "User Name"
-                            : props.profilePage.profile.fullName}
+                            : props.profile.fullName}
                     </h2>
                     <div className={style.itemDis}>
-                        {props.profilePage.profile.aboutMe == null
+                        {props.profile.aboutMe == null
                             ? fishText
-                            : props.profilePage.profile.aboutMe}
+                            : props.profile.aboutMe}
                     </div>
                 </div>
             )}

@@ -10,12 +10,11 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import NavContainer from "./components/Nav/NavContainer";
 import UsersPageContainer from "./components/UsersPage/UsersPageContainer";
 import LoginContainer from "./components/Login/LoginContainer";
-import Preloader from "./components/Preloader";
 
 const App = (props) => {
     const isAuth = useSelector(selectIsAuth);
     const dispatch = useDispatch();
-    console.log(isAuth);
+
     useEffect(() => {
         dispatch(getAuthMe());
     });
