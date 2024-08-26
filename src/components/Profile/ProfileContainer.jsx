@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ProfileInfo from "./ProfileInfo";
 import style from "./ProfileContainer.module.css";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import {
     getUserProfile,
     getProfileStatus,
@@ -11,6 +11,7 @@ import {
     selectPosts,
     selectProfile,
     selectProfileStatus,
+    selectNewPostText,
 } from "../../redux/slices/profileSlice";
 import MyPosts from "./MyPosts/MyPosts";
 import { compose } from "redux";
@@ -20,12 +21,13 @@ const ProfileContainer = React.memo((props) => {
     const profile = useSelector(selectProfile);
     const profileStatus = useSelector(selectProfileStatus);
     const posts = useSelector(selectPosts);
-    const dispatch = useDispatch();
+    const newPostText = useSelector(selectNewPostText);
+
     useEffect(() => {
         let userId = props.router.params.userId;
-        dispatch(props.getUserProfile(userId));
-        dispatch(props.getProfileStatus(userId));
-    }, [props, props.router.params.userId, dispatch]);
+        props.getUserProfile(userId);
+        props.getProfileStatus(userId);
+    }, [props]);
 
     return (
         <div className={style.ProfileWrapper}>
@@ -42,6 +44,7 @@ const ProfileContainer = React.memo((props) => {
                     onPostChange={props.onPostChange}
                     addNewPost={props.addNewPost}
                     posts={posts}
+                    newPostText={newPostText}
                 />
             </div>
         </div>

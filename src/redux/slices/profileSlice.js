@@ -50,15 +50,31 @@ export const profileSlice = createSliceWithThunks({
         selectProfile: (state) => state.profile,
         selectProfileStatus: (state) => state.profileStatus,
         selectPosts: (state) => state.Posts,
+        selectNewPostText: (state) => state.newPostText,
     },
 
     reducers: (create) => ({
-        addNewPost: create.reducer((state, action) => {}),
-        onPostChange: create.reducer((state, action) => {}),
+        addNewPost: create.reducer((state) => {
+            let newPost = {
+                name: "Alex",
+                ava_alt: "ava",
+                ava_src:
+                    "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
+                message: state.newPostText,
+                likecount: 0,
+            };
+            state.Posts.push(newPost);
+            state.newPostText = "";
+            return state;
+        }),
+        onPostChange: create.reducer((state, action) => {
+            state.newPostText = action.payload;
+            return state;
+        }),
         getUserProfile: create.asyncThunk(
-            async (action) => {
+            async (userId) => {
                 const response = await profileAPI.getUserProfilePage(
-                    (action = 309)
+                    userId || 30973
                 );
                 return response;
             },
@@ -68,7 +84,6 @@ export const profileSlice = createSliceWithThunks({
                     state.error = null;
                 },
                 fulfilled: (state, action) => {
-                    console.log(action);
                     state.status = "Resolved";
                     state.profile = action.payload;
                 },
@@ -79,8 +94,10 @@ export const profileSlice = createSliceWithThunks({
             }
         ),
         getProfileStatus: create.asyncThunk(
-            async (action) => {
-                const response = await profileAPI.getProfileStatus(action);
+            async (userId) => {
+                const response = await profileAPI.getProfileStatus(
+                    userId || 30973
+                );
                 return response;
             },
             {
@@ -89,7 +106,6 @@ export const profileSlice = createSliceWithThunks({
                     state.error = null;
                 },
                 fulfilled: (state, action) => {
-                    console.log(action);
                     state.status = "Resolved";
                     state.profileStatus = action.payload;
                 },
@@ -99,7 +115,28 @@ export const profileSlice = createSliceWithThunks({
                 },
             }
         ),
-        editProfileStatus: create.asyncThunk(),
+        editProfileStatus: create.asyncThunk(
+            async (profileStatus) => {
+                const response = await profileAPI.setProfileStatus(
+                    profileStatus
+                );
+                console.log(response);
+                return response.data;
+            },
+            {
+                pending: (state) => {
+                    state.status = "Loading";
+                    state.error = null;
+                },
+                fulfilled: (state, action) => {
+                    state.status = "Resolved";
+                },
+                rejected: (state, action) => {
+                    state.status = "error";
+                    state.error = action.error;
+                },
+            }
+        ),
     }),
 });
 
@@ -111,7 +148,11 @@ export const {
     onPostChange,
 } = profileSlice.actions;
 
-export const { selectProfile, selectProfileStatus, selectPosts } =
-    profileSlice.selectors;
+export const {
+    selectProfile,
+    selectProfileStatus,
+    selectPosts,
+    selectNewPostText,
+} = profileSlice.selectors;
 
 export default profileSlice.reducer;

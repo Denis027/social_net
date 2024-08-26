@@ -21,6 +21,7 @@ const MyPosts = (props) => {
                 onChange={() => props.onPostChange(newPostEl.current.value)}
                 ref={newPostEl}
                 className={style.newPost}
+                value={props.newPostText}
             ></textarea>
             <button
                 onClick={() => props.addNewPost()}
