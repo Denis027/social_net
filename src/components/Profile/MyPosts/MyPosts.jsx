@@ -4,7 +4,7 @@ import Post from "./Post_/Post";
 
 const MyPosts = (props) => {
     let newPostEl = React.createRef();
-    const PostsElem = props.profilePage.Posts.map((p) => (
+    const PostsElem = props.posts.map((p) => (
         <Post
             key={p.id}
             alt={p.ava_alt}
@@ -21,7 +21,7 @@ const MyPosts = (props) => {
                 onChange={() => props.onPostChange(newPostEl.current.value)}
                 ref={newPostEl}
                 className={style.newPost}
-                value={props.profilePage.newPostText}
+                value={props.newPostText}
             ></textarea>
             <button
                 onClick={() => props.addNewPost()}

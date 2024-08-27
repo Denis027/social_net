@@ -111,7 +111,6 @@ export const getProfileStatus =
   (dispatch) => {
     profileAPI.getProfileStatus(userId).then((data) => {
       dispatch(setProfileStatus(data));
-      // dispatch(setUsersCount(data.totalCount));
     });
   };
 

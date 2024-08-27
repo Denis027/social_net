@@ -54,7 +54,8 @@ export const authSlice = createSliceWithThunks({
             async (authData) => {
                 const response = await authAPI.loginMe(
                     authData.email,
-                    authData.password
+                    authData.password,
+                    authData.rememberMe
                 );
                 return response.data;
             },

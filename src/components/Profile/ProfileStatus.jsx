@@ -3,7 +3,7 @@ import style from "./ProfileInfo.module.css";
 
 const ProfileStatus = (props) => {
   const [editMode, setEditMode] = useState(false);
-  const [profileStatus, setProfileStatus] = useState(props.profileStatus);
+  const [profileStatus, setProfileStatus] = useState("");
 
   useEffect(() => {
     setProfileStatus(props.profileStatus);
