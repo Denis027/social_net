@@ -15,7 +15,7 @@ import LoginContainer from "./components/Login/LoginContainer";
 const App = (props) => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
-  console.log(isAuth);
+
   useEffect(() => {
     dispatch(getAuthMe());
   });

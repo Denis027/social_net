@@ -1,33 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./ProfileInfo.module.css";
+import { useSelector } from "react-redux";
+import { selectProfileData } from "../../redux/slices/profileSlice";
 
 const ProfileStatus = (props) => {
   const [editMode, setEditMode] = useState(false);
-  const [profileStatus, setProfileStatus] = useState("");
+  const [newStatusText, setNewStatusText] = useState("");
 
-  useEffect(() => {
-    setProfileStatus(props.profileStatus);
-  }, [props.profileStatus]);
+  const profileData = useSelector(selectProfileData);
 
   const editModeOn = () => {
+    setNewStatusText(props.profileStatus);
     setEditMode(true);
   };
 
   const editModeOff = () => {
-    props.editProfileStatus(profileStatus);
+    props.editProfileStatus(newStatusText);
     setEditMode(false);
   };
 
-  const changeStatus = (newStatus) => {
-    setProfileStatus(newStatus);
+  const changeStatus = (newText) => {
+    setNewStatusText(newText);
   };
 
   return (
     <div>
       {!editMode ? (
         <div>
-          <span className={style.statusText} onDoubleClick={() => editModeOn()}>
-            {profileStatus}
+          <span className={style.statusText} onDoubleClick={editModeOn}>
+            {/* {props.profileStatus} */}
+            {profileData.profileStatus}
           </span>
         </div>
       ) : (
@@ -35,8 +37,8 @@ const ProfileStatus = (props) => {
           <input
             onChange={(e) => changeStatus(e.target.value)}
             autoFocus={true}
-            onBlur={() => editModeOff()}
-            value={profileStatus}
+            onBlur={editModeOff}
+            value={newStatusText}
             type="text"
           />
         </div>
