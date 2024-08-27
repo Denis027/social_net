@@ -6,17 +6,17 @@ import usersReducer from "./usersReducer";
 import authReducer from "./slices/authSlice";
 
 const rootReducer = combineReducers({
-    dialogsPage: dialogsReducer,
-    profilePage: profileReducer,
-    sideBar: sideBarReducer,
-    usersPage: usersReducer,
-    auth: authReducer,
+  dialogsPage: dialogsReducer,
+  profilePage: profileReducer,
+  sideBar: sideBarReducer,
+  usersPage: usersReducer,
+  auth: authReducer,
 });
 
 const setupStore = () => {
-    return configureStore({
-        reducer: rootReducer,
-    });
+  return configureStore({
+    reducer: rootReducer,
+  });
 };
 
 export default setupStore;
