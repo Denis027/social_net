@@ -1,7 +1,6 @@
 import React from "react";
 import User from "./User/User";
 import style from "./UsersPage.module.css";
-import UsersList from "./UsersList";
 import Paginator from "../Paginator/Paginator";
 
 const UsersPage = (props) => {

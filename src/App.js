@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy } from "react";
 import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,11 +6,15 @@ import { getAuthMe, selectIsAuth } from "./redux/slices/authSlice";
 //pages
 import HeaderContainer from "./components/Header/HeaderContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+// import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import NavContainer from "./components/Nav/NavContainer";
 import UsersPageContainer from "./components/UsersPage/UsersPageContainer";
 import LoginContainer from "./components/Login/LoginContainer";
-// import Preloader from "./components/Preloader";
+import { withSuspense } from "./hoc/withLazySuspense";
+
+const DialogsContainerLazy = lazy(() =>
+  import("./components/Dialogs/DialogsContainer")
+);
 
 const App = (props) => {
   const isAuth = useSelector(selectIsAuth);
@@ -36,7 +40,9 @@ const App = (props) => {
           />
           <Route
             path="/dialogs/*"
-            element={isAuth ? <DialogsContainer /> : <Navigate to="/login" />}
+            element={withSuspense(
+              isAuth ? DialogsContainerLazy : <Navigate to="/login" />
+            )}
           />
           <Route path="/users/*" element={<UsersPageContainer />} />
         </Routes>

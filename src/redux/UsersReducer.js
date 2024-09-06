@@ -102,7 +102,6 @@ export const getUsers = (page, pageSize) => {
       dispatch(setUsers(data.items));
       dispatch(setIsFetching(false));
       dispatch(setUsersCount(data.totalCount));
-      console.log(data.totalCount);
     });
   };
 };
