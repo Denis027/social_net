@@ -2,6 +2,7 @@ import Dialog from "./Dialog/Dialog";
 import style from "./Dialogs.module.css";
 import Message from "./Dialog/Message/Message";
 import React from "react";
+import { nanoid } from "@reduxjs/toolkit";
 
 const Dialogs = (props) => {
     let newMessageItem = React.createRef();
@@ -12,16 +13,16 @@ const Dialogs = (props) => {
             src={d.ava_src}
             name={d.name}
             id={d.id}
-            key={d.id}
+            key={nanoid()}
             message={d.message}
         />
     ));
     let messageItem = props.dialogsPage.messagesData.map((m) => (
-        <Message key={m.id} my_message={m.my_message} message={m.message} />
+        <Message key={nanoid()} my_message={m.my_message} message={m.message} />
     ));
     let onTextChange = () => {
         let newMessageText = newMessageItem.current.value;
-        props.onMessageChange(newMessageText);
+        props.updateMessageText(newMessageText);
     };
     let onSendButton = () => {
         props.sendNewMessage();

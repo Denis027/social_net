@@ -18,6 +18,7 @@ const MyPosts = (props) => {
     return (
         <div className={style.postWrapper}>
             <textarea
+                name="newPostText"
                 onChange={() => props.onPostChange(newPostEl.current.value)}
                 ref={newPostEl}
                 className={style.newPost}

@@ -1,5 +1,8 @@
 import { compose } from "redux";
-import { sendNewMessage, updateMessageText } from "../../redux/dialogsReducer";
+import {
+    sendNewMessage,
+    updateMessageText,
+} from "../../redux/slices/dialogsSlice";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
 

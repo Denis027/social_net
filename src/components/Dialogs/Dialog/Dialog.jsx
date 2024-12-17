@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Dialog.module.css";
+import { nanoid } from "@reduxjs/toolkit";
 
 const Dialog = (props) => {
     return (
@@ -10,6 +11,8 @@ const Dialog = (props) => {
                     className={style.Avatarka}
                     alt={props.alt}
                     src={props.src}
+                    id={props.id}
+                    key={nanoid()}
                 ></img>
                 <div>
                     <b className={style.name}>{props.name}</b>

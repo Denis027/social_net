@@ -11,7 +11,7 @@ export const authSlice = createSliceWithThunks({
         userId: null,
         email: null,
         login: null,
-        isAuth: false,
+        isAuth: true,
         status: null,
     },
 
@@ -57,6 +57,7 @@ export const authSlice = createSliceWithThunks({
                     authData.password,
                     authData.rememberMe
                 );
+
                 return response.data;
             },
             {

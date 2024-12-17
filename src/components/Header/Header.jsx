@@ -19,7 +19,7 @@ const Header = (props) => {
                     >
                         Logout
                     </button>
-                    {myPhoto}
+                    <img src={myPhoto} alt="profilePhoto" />
                 </div>
             ) : (
                 <NavLink className={style.loginLink} to="/login">

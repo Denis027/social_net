@@ -4,10 +4,14 @@ import { NavLink } from "react-router-dom";
 import { fishText, userPhoto } from "../../Fish";
 
 const User = (props) => {
+    console.log(props.photo);
+
     return (
         <div className={style.userWrapper}>
             <NavLink to={"/profile/" + props.id}>
-                <div className={style.avaWrapper}>{userPhoto}</div>
+                <div className={style.avaWrapper}>
+                    {<img src={userPhoto} alt="profilePhoto" />}
+                </div>
             </NavLink>
             {props.followed ? (
                 <button

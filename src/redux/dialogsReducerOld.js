@@ -1,4 +1,5 @@
-import { fishText } from "../components/Fish";
+// eslint-disable-next-line
+import { fishText, userPhoto } from "../components/Fish";
 
 const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT";
 const SEND_NEW_MESSAGE = "SEND-NEW-MESSAGE";
@@ -10,44 +11,35 @@ let initialState = {
             id: "1",
             name: "Ivan",
             ava_alt: "ava",
-            ava_src:
-                "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
+            ava_src: userPhoto,
             message: fishText,
         },
         {
             id: "2",
             name: "Kirill",
             ava_alt: "ava",
-            ava_src:
-                "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
-
+            ava_src: userPhoto,
             message: fishText,
         },
         {
             id: "3",
             name: "Anton",
             ava_alt: "ava",
-            ava_src:
-                "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
-
+            ava_src: userPhoto,
             message: fishText,
         },
         {
             id: "4",
             name: "Mary",
             ava_alt: "ava",
-            ava_src:
-                "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
-
+            ava_src: userPhoto,
             message: fishText,
         },
         {
             id: "5",
             name: "Alex",
             ava_alt: "ava",
-            ava_src:
-                "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
-
+            ava_src: userPhoto,
             message: fishText,
         },
     ],
@@ -89,7 +81,6 @@ const dialogsReducer = (state = initialState, action) => {
         }
         case SEND_NEW_MESSAGE: {
             let newMessege = {
-                id: 1,
                 myMessage: "true",
                 message: state.newMessageText,
             };
@@ -103,11 +94,11 @@ const dialogsReducer = (state = initialState, action) => {
     }
 };
 
-export const updateMessageText = (newMessageText) => {
-    return { type: "UPDATE-MESSAGE-TEXT", newMessageText: newMessageText };
-};
-export const sendNewMessage = () => {
-    return { type: "SEND-NEW-MESSAGE" };
-};
+// export const updateMessageText = (newMessageText) => {
+//     return { type: "UPDATE-MESSAGE-TEXT", newMessageText: newMessageText };
+// };
+// export const sendNewMessage = () => {
+//     return { type: "SEND-NEW-MESSAGE" };
+// };
 
 export default dialogsReducer;

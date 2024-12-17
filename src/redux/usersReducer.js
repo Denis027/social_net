@@ -75,7 +75,6 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 
-
 //ACs
 export const onClickFollow = (userId) => {
     return { type: FOLLOW, userId };
