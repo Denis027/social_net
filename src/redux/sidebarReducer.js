@@ -1,39 +1,36 @@
+import userPhoto from "../img/images.png";
+
 let initialState = {
     friendsList: [
         {
-            id: "1",
+            id: 1,
             name: "Ivan",
             ava_alt: "ava",
-            ava_src:
-                "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
+            ava_src: userPhoto,
         },
         {
-            id: "2",
+            id: 2,
             name: "Kirill",
             ava_alt: "ava",
-            ava_src:
-                "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
+            ava_src: userPhoto,
         },
         {
-            id: "3",
+            id: 3,
             name: "Anton",
             ava_alt: "ava",
-            ava_src:
-                "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
+            ava_src: userPhoto,
         },
         {
-            id: "4",
+            id: 4,
             name: "Mary",
             ava_alt: "ava",
-            ava_src:
-                "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
+            ava_src: userPhoto,
         },
         {
-            id: "5",
+            id: 5,
             name: "Alex",
             ava_alt: "ava",
-            ava_src:
-                "https://blog.ferplast.com/wp-content/uploads/2015/08/tardar-sauce-grumpy-cat-gatto-pi%C3%B9-ricco-del-mondo-ferplast-1024x682.jpg",
+            ava_src: userPhoto,
         },
     ],
 };
