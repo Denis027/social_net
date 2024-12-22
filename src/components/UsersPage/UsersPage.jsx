@@ -8,17 +8,26 @@ const UsersPage = (props) => {
         <div>
             <div className={style.title}>
                 <h1>Users</h1>
+                <label>pageSize</label>
+                <select name="pageSize" id="city-select">
+                    <option value="">-- pageSize --</option>
+                    <option value={10}>10</option>
+                    <option value={20}>20</option>
+                    <option value={50}>50</option>
+                    <option value={100}>100</option>
+                </select>
             </div>
             <div className={style.usersListWrapper}>
                 <Paginator
+                    setCurrentPage={props.setCurrentPage}
                     onPageChange={props.onPageChange}
-                    currentPage={props.usersList.currentPage}
+                    currentPage={props.currentPage}
                     totalItemCount={props.usersList.totalUsersCount}
                 />
             </div>
             <div className={style.usersWrapper}>
                 <div className={style.usersItems}>
-                    {props.users.map((user) => (
+                    {props.usersList.users.map((user) => (
                         <User
                             key={user.id}
                             name={user.name}

@@ -1,4 +1,4 @@
-import userPhoto from "../img/images.png";
+import userPhoto from "../../img/images.png";
 
 let initialState = {
     friendsList: [

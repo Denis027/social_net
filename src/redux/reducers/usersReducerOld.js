@@ -1,4 +1,4 @@
-import { usersAPI } from "../api/samuraiAPI";
+import { usersAPI } from "../../api/samuraiAPI";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -8,8 +8,8 @@ const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const TOOGLE_IS_FETCHING = "TOOGLE_IS_FETCHING";
 
 let initialState = {
-    users: [],
     usersList: {
+        users: [],
         pageSize: 10,
         totalUsersCount: 154,
         currentPage: 1,
@@ -23,17 +23,19 @@ const usersReducer = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map((u) => {
-                    if (u.id === action.userId) {
-                        return { ...u, followed: true };
-                    }
-                    return u;
-                }),
+                usersList: {
+                    users: state.usersList.users.map((u) => {
+                        if (u.id === action.userId) {
+                            return { ...u, followed: true };
+                        }
+                        return u;
+                    }),
+                },
             };
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map((u) => {
+                users: state.usersList.users.map((u) => {
                     if (u.id === action.userId) {
                         return { ...u, followed: false };
                     }
@@ -41,7 +43,7 @@ const usersReducer = (state = initialState, action) => {
                 }),
             };
         case SET_USERS:
-            stateCopy = { ...state, users: [...action.users] };
+            stateCopy = { ...state, usersList: { users: [...action.users] } };
             return stateCopy;
         case SET_USERS_COUNT:
             stateCopy = {

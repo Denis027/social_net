@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { fishText, userPhoto } from "../components/Fish";
+import { fishText, userPhoto } from "../../components/Fish";
 
 const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT";
 const SEND_NEW_MESSAGE = "SEND-NEW-MESSAGE";
