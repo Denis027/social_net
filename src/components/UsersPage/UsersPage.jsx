@@ -9,8 +9,14 @@ const UsersPage = (props) => {
             <div className={style.title}>
                 <h1>Users</h1>
                 <label>pageSize</label>
-                <select name="pageSize" id="city-select">
-                    <option value="">-- pageSize --</option>
+                <select
+                    value={props.pageSize}
+                    onChange={(e) => {
+                        console.log(props.pageSize);
+                        let newPageSize = Number(e.target.value);
+                        props.onPageSizeChange(newPageSize);
+                    }}
+                >
                     <option value={10}>10</option>
                     <option value={20}>20</option>
                     <option value={50}>50</option>
@@ -19,6 +25,7 @@ const UsersPage = (props) => {
             </div>
             <div className={style.usersListWrapper}>
                 <Paginator
+                    pageSize={props.pageSize}
                     setCurrentPage={props.setCurrentPage}
                     onPageChange={props.onPageChange}
                     currentPage={props.currentPage}
@@ -33,6 +40,7 @@ const UsersPage = (props) => {
                             name={user.name}
                             id={user.id}
                             followed={user.followed}
+                            dispatch={props.dispatch}
                             userUnfollow={props.userUnfollow}
                             userFollow={props.userFollow}
                         />

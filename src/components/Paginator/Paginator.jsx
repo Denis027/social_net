@@ -3,9 +3,8 @@ import style from "./Paginator.module.css";
 
 const Paginator = (props) => {
     const portionSize = 15;
-    const pageSize = 10;
 
-    let pagesCount = Math.ceil(props.totalItemCount / pageSize);
+    let pagesCount = Math.ceil(props.totalItemCount / props.pageSize);
     let pages = [];
 
     for (let i = 1; i <= pagesCount; i++) {

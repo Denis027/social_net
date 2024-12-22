@@ -24,6 +24,8 @@ export const usersSlice = createSliceWithThunks({
     reducers: (create) => ({
         getUsers: create.asyncThunk(
             async (currentPage, pageSize) => {
+                console.log(currentPage);
+
                 return await usersAPI.getUsers(currentPage, pageSize);
             },
             {
@@ -33,6 +35,8 @@ export const usersSlice = createSliceWithThunks({
                 },
                 fulfilled: (state, action) => {
                     state.status = "Resolved";
+                    console.log(action);
+                    state.usersList.totalUsersCount = action.payload.totalCount;
                     state.usersList.users = action.payload.items;
                 },
                 rejected: (state, action) => {
