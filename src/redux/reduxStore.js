@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     profilePage: profileReducer,
     sideBar: sideBarReducer,
-    usersPage: usersReducer,
+    usersList: usersReducer,
     auth: authReducer,
 });
 

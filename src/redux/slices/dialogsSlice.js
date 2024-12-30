@@ -1,5 +1,4 @@
-// eslint-disable-next-line
-import { asyncThunkCreator, buildCreateSlice, nanoid } from "@reduxjs/toolkit";
+import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
 import { fishText, userPhoto } from "../../components/Fish";
 
 const createSliceWithThunks = buildCreateSlice({
@@ -9,71 +8,73 @@ const createSliceWithThunks = buildCreateSlice({
 export const dialogsSlice = createSliceWithThunks({
     name: "dialogsPage",
     initialState: {
-        newMessageText: "qwerty",
-        dialogsData: [
-            {
-                id: "1",
-                name: "Ivan",
-                ava_alt: "ava",
-                ava_src: userPhoto,
-                message: fishText,
-            },
-            {
-                id: "2",
-                name: "Kirill",
-                ava_alt: "ava",
-                ava_src: userPhoto,
-                message: fishText,
-            },
-            {
-                id: "3",
-                name: "Anton",
-                ava_alt: "ava",
-                ava_src: userPhoto,
-                message: fishText,
-            },
-            {
-                id: "4",
-                name: "Mary",
-                ava_alt: "ava",
-                ava_src: userPhoto,
-                message: fishText,
-            },
-            {
-                id: "5",
-                name: "Alex",
-                ava_alt: "ava",
-                ava_src: userPhoto,
-                message: fishText,
-            },
-        ],
-        messagesData: [
-            {
-                id: 1,
-                my_message: "false",
-                message: fishText,
-            },
-            {
-                id: 2,
-                my_message: "true",
-                message: fishText,
-            },
-            {
-                id: 3,
-                my_message: "true",
-                message: fishText,
-            },
-            {
-                id: 4,
-                my_message: "false",
-                message: fishText,
-            },
-            {
-                id: 5,
-                my_message: "false",
-                message: fishText,
-            },
-        ],
+        dialogsPage: {
+            newMessageText: "qwerty",
+            dialogsData: [
+                {
+                    id: "1",
+                    name: "Ivan",
+                    ava_alt: "ava",
+                    ava_src: userPhoto,
+                    message: fishText,
+                },
+                {
+                    id: "2",
+                    name: "Kirill",
+                    ava_alt: "ava",
+                    ava_src: userPhoto,
+                    message: fishText,
+                },
+                {
+                    id: "3",
+                    name: "Anton",
+                    ava_alt: "ava",
+                    ava_src: userPhoto,
+                    message: fishText,
+                },
+                {
+                    id: "4",
+                    name: "Mary",
+                    ava_alt: "ava",
+                    ava_src: userPhoto,
+                    message: fishText,
+                },
+                {
+                    id: "5",
+                    name: "Alex",
+                    ava_alt: "ava",
+                    ava_src: userPhoto,
+                    message: fishText,
+                },
+            ],
+            messagesData: [
+                {
+                    id: 1,
+                    my_message: "false",
+                    message: fishText,
+                },
+                {
+                    id: 2,
+                    my_message: "true",
+                    message: fishText,
+                },
+                {
+                    id: 3,
+                    my_message: "true",
+                    message: fishText,
+                },
+                {
+                    id: 4,
+                    my_message: "false",
+                    message: fishText,
+                },
+                {
+                    id: 5,
+                    my_message: "false",
+                    message: fishText,
+                },
+            ],
+        },
     },
 
     selectors: {
@@ -84,15 +85,15 @@ export const dialogsSlice = createSliceWithThunks({
         sendNewMessage: create.reducer((state) => {
             let newMessege = {
                 myMessage: "true",
-                message: state.newMessageText,
+                message: state.dialogsPage.newMessageText,
             };
-            state.messagesData.push(newMessege);
-            state.newMessageText = "";
+            state.dialogsPage.messagesData.push(newMessege);
+            state.dialogsPage.newMessageText = "";
             return state;
         }),
         updateMessageText: create.reducer((state, action) => {
             console.log(action);
-            state.newMessageText = action.payload;
+            state.dialogsPage.newMessageText = action.payload;
             return state;
         }),
     }),

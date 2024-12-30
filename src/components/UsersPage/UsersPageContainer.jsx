@@ -9,28 +9,28 @@ import {
     userUnfollow,
 } from "../../redux/slices/usersSlice";
 
-// import { compose } from "redux";
-// import { withRouter } from "../../hoc/withRouter";
-
 const UsersPageContainer = (props) => {
     const usersList = useSelector(selectUsersList);
     const dispatch = useDispatch();
-
-    // eslint-disable-next-line
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(
+        JSON.parse(localStorage.getItem("pageSize")) || 10
+    );
 
     useEffect(() => {
-        dispatch(getUsers(currentPage, pageSize));
-    }, [dispatch, props, currentPage, pageSize]);
+        dispatch(getUsers({ currentPage, pageSize }));
+    }, [dispatch, currentPage, pageSize]);
 
-    const onPageChange = (page) => {
-        getUsers(page, pageSize);
+    const onPageSizeChange = (pageSize) => {
+        setPageSize(pageSize);
+        localStorage.setItem("pageSize", JSON.stringify(pageSize));
     };
 
-    const onPageSizeChange = (page) => {
-        setPageSize(page);
-        console.log(page);
+    const follow = (userId) => {
+        dispatch(userFollow(userId));
+    };
+    const unfollow = (userId) => {
+        dispatch(userUnfollow(userId));
     };
 
     return (
@@ -39,15 +39,13 @@ const UsersPageContainer = (props) => {
                 <Preloader />
             ) : (
                 <UsersPage
+                    follow={follow}
+                    unfollow={unfollow}
                     setCurrentPage={setCurrentPage}
                     onPageSizeChange={onPageSizeChange}
                     usersList={usersList}
                     currentPage={currentPage}
                     pageSize={pageSize}
-                    onPageChange={onPageChange}
-                    userFollow={userFollow}
-                    userUnfollow={userUnfollow}
-                    dispatch={dispatch}
                 />
             )}
         </div>

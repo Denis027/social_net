@@ -1,18 +1,16 @@
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
 import { usersAPI } from "../../api/samuraiAPI";
-// eslint-disable-next-line
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 });
 
 export const usersSlice = createSliceWithThunks({
-    name: "usersPage",
+    name: "usersList",
     initialState: {
         usersList: {
             users: [],
             totalUsersCount: 154,
-            currentPage: 1,
             isFetching: false,
         },
     },
@@ -23,21 +21,19 @@ export const usersSlice = createSliceWithThunks({
 
     reducers: (create) => ({
         getUsers: create.asyncThunk(
-            async (currentPage, pageSize) => {
-                console.log(currentPage);
-
-                return await usersAPI.getUsers(currentPage, pageSize);
+            async ({ currentPage, pageSize }) => {
+                return await usersAPI.getUsers({ currentPage, pageSize });
             },
             {
                 pending: (state) => {
-                    state.status = "Loading";
+                    state.isFetching = true;
                     state.error = null;
                 },
                 fulfilled: (state, action) => {
-                    state.status = "Resolved";
-                    console.log(action);
+                    state.isFetching = false;
                     state.usersList.totalUsersCount = action.payload.totalCount;
                     state.usersList.users = action.payload.items;
+                    // console.log(action.payload.items);
                 },
                 rejected: (state, action) => {
                     state.status = "error";
@@ -47,7 +43,7 @@ export const usersSlice = createSliceWithThunks({
         ),
         userFollow: create.asyncThunk(
             async (usersId) => {
-                return usersAPI.userFollow(usersId);
+                return await usersAPI.userFollow(usersId);
             },
             {
                 pending: (state) => {
@@ -71,7 +67,7 @@ export const usersSlice = createSliceWithThunks({
         ),
         userUnfollow: create.asyncThunk(
             async (usersId) => {
-                return usersAPI.userUnfollow(usersId);
+                return await usersAPI.userUnfollow(usersId);
             },
             {
                 pending: (state) => {

@@ -49,7 +49,7 @@ export const profileAPI = {
 };
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 10) {
+    getUsers({ currentPage, pageSize }) {
         return instans
             .get(`users?page=${currentPage}&count=${pageSize}`)
             .then((response) => {

@@ -12,9 +12,7 @@ const UsersPage = (props) => {
                 <select
                     value={props.pageSize}
                     onChange={(e) => {
-                        console.log(props.pageSize);
-                        let newPageSize = Number(e.target.value);
-                        props.onPageSizeChange(newPageSize);
+                        props.onPageSizeChange(e.target.value);
                     }}
                 >
                     <option value={10}>10</option>
@@ -40,9 +38,8 @@ const UsersPage = (props) => {
                             name={user.name}
                             id={user.id}
                             followed={user.followed}
-                            dispatch={props.dispatch}
-                            userUnfollow={props.userUnfollow}
-                            userFollow={props.userFollow}
+                            unfollow={props.unfollow}
+                            follow={props.follow}
                         />
                     ))}
                 </div>

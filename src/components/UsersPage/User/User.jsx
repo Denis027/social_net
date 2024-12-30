@@ -13,21 +13,21 @@ const User = (props) => {
             </NavLink>
             {props.followed ? (
                 <button
-                    onClick={() => props.dispathc(props.userUnfollow(props.id))}
+                    onClick={() => props.unfollow(props.id)}
                     className={style.button}
                 >
                     Unfollow
                 </button>
             ) : (
                 <button
-                    onClick={() => props.dispathc(props.userFollow(props.id))}
+                    onClick={() => props.follow(props.id)}
                     className={style.button}
                 >
                     Follow
                 </button>
             )}
             <b className={style.name}>{props.name}</b>
-            <b className={style.id}>ID:{props.id}</b>
+            <b className={style.id}>ID: {props.id}</b>
             <div className={style.location}>city: , country:</div>
             <div className={style.status}>{fishText}</div>
         </div>

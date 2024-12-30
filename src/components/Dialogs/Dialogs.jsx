@@ -17,16 +17,16 @@ const Dialogs = (props) => {
             message={d.message}
         />
     ));
+
     let messageItem = props.dialogsPage.messagesData.map((m) => (
         <Message key={nanoid()} my_message={m.my_message} message={m.message} />
     ));
-    let onTextChange = () => {
+
+    const onTextChange = () => {
         let newMessageText = newMessageItem.current.value;
-        props.updateMessageText(newMessageText);
+        props.updateMessage(newMessageText);
     };
-    let onSendButton = () => {
-        props.sendNewMessage();
-    };
+
     return (
         <div>
             <h1 className={style.title}>Dialogs</h1>
@@ -43,7 +43,7 @@ const Dialogs = (props) => {
                                 value={props.dialogsPage.newMessageText}
                             ></textarea>
                             <button
-                                onClick={onSendButton}
+                                onClick={props.sendMessage}
                                 className={style.sendButton}
                             >
                                 send

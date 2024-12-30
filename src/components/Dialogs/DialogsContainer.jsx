@@ -1,21 +1,31 @@
-import { compose } from "redux";
 import {
+    selectDialogsPage,
     sendNewMessage,
     updateMessageText,
 } from "../../redux/slices/dialogsSlice";
 import Dialogs from "./Dialogs";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-const mapStateToProps = (state) => {
-    return {
-        dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth,
+const DialogsContainer = (props) => {
+    const dispatch = useDispatch();
+    const dialogsPage = useSelector(selectDialogsPage);
+
+    const updateMessage = (newMessageText) => {
+        dispatch(updateMessageText(newMessageText));
     };
+    const sendMessage = () => {
+        dispatch(sendNewMessage());
+    };
+
+    return (
+        <div>
+            <Dialogs
+                dialogsPage={dialogsPage}
+                sendMessage={sendMessage}
+                updateMessage={updateMessage}
+            />
+        </div>
+    );
 };
 
-export default compose(
-    connect(mapStateToProps, {
-        updateMessageText,
-        sendNewMessage,
-    })
-)(Dialogs);
+export default DialogsContainer;

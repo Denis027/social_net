@@ -1,20 +1,18 @@
 .usersListWrapper {
-  display: flex;
-  padding-left: 10px;
-  padding-right: 10px;
-  justify-content: space-between;
-  /* justify-content: center; */
+    display: flex;
+    padding: 3px 10px;
+    justify-content: space-between;
 }
 
 .usersListItemWrapper {
-  padding-left: 5px;
-  background-color: aquamarine;
-  border-radius: 10px;
-  font-size: 18px;
+    padding-left: 5px;
+    background-color: aquamarine;
+    border-radius: 10px;
+    font-size: 18px;
 }
 
 .usersListCurrentItem {
-  font-weight: bold;
-  border-radius: 10px;
-  font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 18px;
 }
