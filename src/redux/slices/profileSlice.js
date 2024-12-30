@@ -1,4 +1,4 @@
-import { asyncThunkCreator, buildCreateSlice, nanoid } from "@reduxjs/toolkit";
+import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
 import { profileAPI } from "../../api/samuraiAPI";
 // eslint-disable-next-line
 import { myPhoto, userPhoto } from "../../components/Fish";
@@ -63,16 +63,15 @@ export const profileSlice = createSliceWithThunks({
                 name: "Alex",
                 ava_alt: "ava",
                 ava_src: myPhoto,
-                message: state.newPostText,
-                key: nanoid(),
+                message: state.myPostsData.newPostText,
                 likecount: 0,
             };
             state.myPostsData.Posts.push(newPost);
             state.myPostsData.newPostText = "";
-            return state;
         }),
         onPostChange: create.reducer((state, action) => {
-            return (state.myPostsData.newPostText = action.payload);
+            console.log(action);
+            state.myPostsData.newPostText = action.payload;
         }),
         getUserProfile: create.asyncThunk(
             async (userId) => {
