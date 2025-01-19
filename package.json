@@ -4,9 +4,10 @@
     "private": true,
     "dependencies": {
         "@reduxjs/toolkit": "^2.2.6",
-        "@testing-library/jest-dom": "^5.17.0",
-        "@testing-library/react": "^13.4.0",
-        "@testing-library/user-event": "^13.5.0",
+        "@types/jest": "^29.5.14",
+        "@types/node": "^22.10.7",
+        "@types/react": "^19.0.7",
+        "@types/react-dom": "^19.0.3",
         "axios": "^1.7.2",
         "formik": "^2.4.6",
         "react": "^18.3.1",
@@ -15,12 +16,13 @@
         "react-router-dom": "^6.24.0",
         "react-scripts": "^5.0.1",
         "redux": "^5.0.1",
+        "typescript": "^5.7.3",
         "web-vitals": "^2.1.4"
     },
     "scripts": {
         "start": "react-scripts --openssl-legacy-provider start",
         "build": "react-scripts --openssl-legacy-provider build",
-        "test": "react-scripts test",
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
@@ -42,6 +44,17 @@
         ]
     },
     "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+        "@babel/core": "^7.26.0",
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "@babel/plugin-syntax-jsx": "^7.25.9",
+        "@babel/preset-env": "^7.26.0",
+        "@babel/preset-react": "^7.26.3",
+        "@testing-library/jest-dom": "^6.6.3",
+        "@testing-library/react": "^16.2.0",
+        "@testing-library/user-event": "^14.6.0",
+        "identity-obj-proxy": "^3.0.0",
+        "jest": "^27.5.1",
+        "jest-environment-jsdom": "^29.7.0",
+        "ts-node": "^10.9.2"
     }
 }
