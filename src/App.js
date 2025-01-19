@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.css";
 // eslint-disable-next-line
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthMe, selectIsAuth } from "./redux/slices/authSlice";
 
