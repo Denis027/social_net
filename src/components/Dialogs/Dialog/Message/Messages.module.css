@@ -4,6 +4,7 @@
     color: aquamarine;
     background-color: gray;
     max-width: 500px;
+    justify-self: start;
 }
 
 .item[my_message*="true"] {
