@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import dialogsReducer from "./slices/dialogsSlice";
+import dialogsReducer from "./slices/dialogsSlice.ts";
 import profileReducer from "./slices/profileSlice";
 import sideBarReducer from "./reducers/sidebarReducer";
 import usersReducer from "./slices/usersSlice";
@@ -18,5 +18,11 @@ const setupStore = () => {
         reducer: rootReducer,
     });
 };
+
+export const store = setupStore();
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
 
 export default setupStore;
