@@ -1,14 +1,14 @@
+import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
 import {
     selectDialogsPage,
     sendNewMessage,
     updateMessageText,
-} from "../../redux/slices/dialogsSlice";
+} from "../../redux/slices/dialogsSlice.ts";
 import Dialogs from "./Dialogs";
-import { useDispatch, useSelector } from "react-redux";
 
-const DialogsContainer = (props) => {
-    const dispatch = useDispatch();
-    const dialogsPage = useSelector(selectDialogsPage);
+const DialogsContainer = () => {
+    const dispatch = useAppDispatch();
+    const dialogsPage = useAppSelector(selectDialogsPage);
 
     const updateMessage = (newMessageText) => {
         dispatch(updateMessageText(newMessageText));
