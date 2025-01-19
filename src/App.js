@@ -3,7 +3,7 @@ import "./App.css";
 // eslint-disable-next-line
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuthMe, selectIsAuth } from "./redux/slices/authSlice";
+import { getAuthMe, selectIsAuth } from "./redux/slices/authSlice.ts";
 
 //pages
 import HeaderContainer from "./components/Header/HeaderContainer";

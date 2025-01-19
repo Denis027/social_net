@@ -1,20 +1,25 @@
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
 import { authAPI } from "../../api/samuraiAPI";
+import { error } from "console";
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 });
 
+const initialState = {
+    userId: null as number | null,
+    email: null as string | null,
+    login: null as string | null,
+    isAuth: true,
+    status: null as string | null,
+    error: null as any | null,
+};
+
+export type initialStateAuthType = typeof initialState;
+
 export const authSlice = createSliceWithThunks({
     name: "auth",
-    initialState: {
-        userId: null,
-        email: null,
-        login: null,
-        isAuth: true,
-        status: null,
-    },
-
+    initialState,
     selectors: {
         selectIsAuth: (state) => state.isAuth,
     },
@@ -44,14 +49,14 @@ export const authSlice = createSliceWithThunks({
                         state.isAuth = false;
                     }
                 },
-                rejected: (state, action) => {
+                rejected: (state: initialStateAuthType, action) => {
                     state.status = "error";
                     state.error = action.error;
                 },
             }
         ),
         getLoginMe: create.asyncThunk(
-            async (authData) => {
+            async (authData: any) => {
                 const response = await authAPI.loginMe(
                     authData.email,
                     authData.password,

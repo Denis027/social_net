@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getLoginMe } from "../../redux/slices/authSlice";
+import { getLoginMe } from "../../redux/slices/authSlice.ts";
 import { useFormik } from "formik";
 
 const LoginForm = (props) => {
@@ -58,7 +58,6 @@ const LoginContainer = () => {
     const dispatch = useDispatch();
 
     const onSendData = (authData) => {
-
         dispatch(getLoginMe(authData));
     };
 

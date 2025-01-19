@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Header.module.css";
 import { NavLink } from "react-router-dom";
-import { getLogoutMe, selectIsAuth } from "../../redux/slices/authSlice";
+import { getLogoutMe, selectIsAuth } from "../../redux/slices/authSlice.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { myPhoto } from "../Fish";
 
