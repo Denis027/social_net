@@ -1,8 +1,8 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import dialogsReducer from "./slices/dialogsSlice.ts";
-import profileReducer from "./slices/profileSlice";
-import sideBarReducer from "./reducers/sidebarReducer";
-import usersReducer from "./slices/usersSlice";
+import profileReducer from "./slices/profileSlice.ts";
+import sideBarReducer from "./slices/sidebarSlice.ts";
+import usersReducer from "./slices/usersSlice.ts";
 import authReducer from "./slices/authSlice.ts";
 
 const rootReducer = combineReducers({

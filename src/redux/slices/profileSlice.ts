@@ -2,55 +2,80 @@ import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
 import { profileAPI } from "../../api/samuraiAPI";
 // eslint-disable-next-line
 import { myPhoto, userPhoto } from "../../components/Fish";
+import { error } from "console";
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 });
 
+export type ProfileDataType = {
+    profile: any;
+    profileStatus: null | string;
+    newStatusText: null | string;
+};
+
+export type PostType = {
+    name: string;
+    ava_alt: string;
+    ava_src: string;
+    message: string;
+    likecount: number;
+};
+
+export type MyPostsDataType = {
+    newPostText: string;
+    Posts: Array<PostType>;
+};
+
+export type ProfilePageType = {
+    profileData: ProfileDataType;
+    myPostsData: MyPostsDataType;
+    status: null | string;
+    error: any;
+};
+
+const initialState: ProfilePageType = {
+    profileData: {
+        profile: null,
+        profileStatus: null,
+        newStatusText: null,
+    },
+    myPostsData: {
+        newPostText: "kek",
+        Posts: [
+            {
+                name: "Ivan",
+                ava_alt: "ava",
+                ava_src: userPhoto,
+                message:
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.",
+                likecount: 123,
+            },
+            {
+                name: "Andry",
+                ava_alt: "ava",
+                ava_src: userPhoto,
+                message:
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.",
+                likecount: 123,
+            },
+            {
+                name: "Alex",
+                ava_alt: "ava",
+                ava_src: userPhoto,
+                message:
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.",
+                likecount: 123,
+            },
+        ],
+    },
+    status: null,
+    error: null,
+};
+
 export const profileSlice = createSliceWithThunks({
     name: "profilePage",
-    initialState: {
-        profileData: {
-            profile: null,
-            profileStatus: null,
-            newStatusText: null,
-        },
-        myPostsData: {
-            newPostText: "kek",
-            Posts: [
-                {
-                    id: 1,
-                    name: "Ivan",
-                    ava_alt: "ava",
-                    ava_src:
-                        "https://i.pinimg.com/736x/b1/cc/99/b1cc9987043f82eda1963ab8ba5d03c5.jpg",
-                    message:
-                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.",
-                    likecount: 123,
-                },
-                {
-                    id: 2,
-                    name: "Andry",
-                    ava_alt: "ava",
-                    ava_src:
-                        "https://i.pinimg.com/736x/b1/cc/99/b1cc9987043f82eda1963ab8ba5d03c5.jpg",
-                    message:
-                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.",
-                    likecount: 123,
-                },
-                {
-                    id: 3,
-                    name: "Alex",
-                    ava_alt: "ava",
-                    ava_src:
-                        "https://i.pinimg.com/736x/b1/cc/99/b1cc9987043f82eda1963ab8ba5d03c5.jpg",
-                    message:
-                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nesciunt ad, quis at id suscipit. Repellendus non voluptate, fugit obcaecati quisquam at vel vitae, magnam atque, ipsam amet eaque animi.",
-                    likecount: 123,
-                },
-            ],
-        },
-    },
+    initialState,
 
     selectors: {
         selectProfileData: (state) => state.profileData,
@@ -69,12 +94,12 @@ export const profileSlice = createSliceWithThunks({
             state.myPostsData.Posts.push(newPost);
             state.myPostsData.newPostText = "";
         }),
-        onPostChange: create.reducer((state, action) => {
+        onPostChange: create.reducer((state: ProfilePageType, action: any) => {
             console.log(action);
             state.myPostsData.newPostText = action.payload;
         }),
         getUserProfile: create.asyncThunk(
-            async (userId) => {
+            async (userId: number) => {
                 return await profileAPI.getUserProfilePage(userId || 30973);
             },
             {
@@ -82,7 +107,8 @@ export const profileSlice = createSliceWithThunks({
                     state.status = "Loading";
                     state.error = null;
                 },
-                fulfilled: (state, action) => {
+                fulfilled: (state: ProfilePageType, action: any) => {
+                    console.log(action);
                     state.status = "Resolved";
                     state.profileData.profile = action.payload;
                 },
@@ -93,7 +119,7 @@ export const profileSlice = createSliceWithThunks({
             }
         ),
         getProfileStatus: create.asyncThunk(
-            async (userId) => {
+            async (userId: number) => {
                 const response = await profileAPI.getProfileStatus(
                     userId || 30973
                 );
@@ -114,7 +140,7 @@ export const profileSlice = createSliceWithThunks({
                 },
             }
         ),
-        onStatusChange: create.reducer((state, action) => {
+        onStatusChange: create.reducer((state, action: any) => {
             return (state.profileData.newStatusText = action.payload);
         }),
         editProfileStatus: create.asyncThunk(
@@ -136,7 +162,7 @@ export const profileSlice = createSliceWithThunks({
                             state.profileData.newStatusText;
                     }
                 },
-                rejected: (state, action) => {
+                rejected: (state, action: any) => {
                     state.status = "error";
                     state.error = action.error;
                 },

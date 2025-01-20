@@ -7,7 +7,7 @@ import {
     getUsers,
     userFollow,
     userUnfollow,
-} from "../../redux/slices/usersSlice";
+} from "../../redux/slices/usersSlice.ts";
 
 const UsersPageContainer = (props) => {
     const usersList = useSelector(selectUsersList);

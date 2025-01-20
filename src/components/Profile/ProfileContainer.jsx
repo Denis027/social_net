@@ -11,7 +11,7 @@ import {
     addNewPost,
     selectProfileData,
     selectMyPostsData,
-} from "../../redux/slices/profileSlice";
+} from "../../redux/slices/profileSlice.ts";
 import MyPosts from "./MyPosts/MyPosts";
 import { compose } from "redux";
 import { withRouter } from "../../hoc/withRouter";

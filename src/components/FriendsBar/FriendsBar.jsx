@@ -2,8 +2,8 @@ import React from "react";
 import Friend from "./Friend/Friend";
 import style from "./FriendsBar.module.css";
 
-const FriendsBar = (props) => {
-    let friendEl = props.friendsList.map((f) => (
+const FriendsBar = ({ friendsList, ...props }) => {
+    let friendEl = friendsList.map((f) => (
         <Friend
             key={f.id}
             alt={f.ava_alt}

@@ -121,10 +121,9 @@ export const dialogsSlice = createSliceWithThunks({
                 state.dialogsPage.newMessageText = "";
                 return state;
             }
-        ), 
+        ),
         updateMessageText: create.reducer(
             (state: DialogsPageType, action: ActionType): DialogsPageType => {
-                console.log(action);
                 state.dialogsPage.newMessageText = action.payload;
                 return state;
             }
