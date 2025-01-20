@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import st from "./Nav.module.css";
 import FriendsBar from "../FriendsBar/FriendsBar";
 
-const Nav = (props) => {
+const Nav = ({ friendsList, ...props }) => {
     return (
         <div className={st.nav}>
             <nav>
@@ -19,7 +19,7 @@ const Nav = (props) => {
                     </li>
                 </ul>
             </nav>
-            <FriendsBar friendsList={props.friendsList} />
+            <FriendsBar friendsList={friendsList} />
         </div>
     );
 };
