@@ -1,25 +1,17 @@
+import { PostType, UserProfileType } from "../../types/types";
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
 import { profileAPI } from "../../api/samuraiAPI";
 // eslint-disable-next-line
 import { myPhoto, userPhoto } from "../../components/Fish";
-import { error } from "console";
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 });
 
 export type ProfileDataType = {
-    profile: any;
+    profile: null | UserProfileType;
     profileStatus: null | string;
     newStatusText: null | string;
-};
-
-export type PostType = {
-    name: string;
-    ava_alt: string;
-    ava_src: string;
-    message: string;
-    likecount: number;
 };
 
 export type MyPostsDataType = {
@@ -94,7 +86,7 @@ export const profileSlice = createSliceWithThunks({
             state.myPostsData.Posts.push(newPost);
             state.myPostsData.newPostText = "";
         }),
-        onPostChange: create.reducer((state: ProfilePageType, action: any) => {
+        onPostChange: create.reducer((state, action: any) => {
             console.log(action);
             state.myPostsData.newPostText = action.payload;
         }),
@@ -107,7 +99,7 @@ export const profileSlice = createSliceWithThunks({
                     state.status = "Loading";
                     state.error = null;
                 },
-                fulfilled: (state: ProfilePageType, action: any) => {
+                fulfilled: (state, action: any) => {
                     console.log(action);
                     state.status = "Resolved";
                     state.profileData.profile = action.payload;

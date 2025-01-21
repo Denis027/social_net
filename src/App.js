@@ -8,7 +8,7 @@ import { getAuthMe, selectIsAuth } from "./redux/slices/authSlice.ts";
 //pages
 import HeaderContainer from "./components/Header/HeaderContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer.tsx";
 import NavContainer from "./components/Nav/NavContainer";
 import UsersPageContainer from "./components/UsersPage/UsersPageContainer";
 // eslint-disable-next-line

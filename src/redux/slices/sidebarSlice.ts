@@ -1,5 +1,4 @@
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
-// eslint-disable-next-line
 import { userPhoto } from "../../components/Fish";
 
 const createSliceWithThunks = buildCreateSlice({
@@ -61,15 +60,6 @@ export const sidebarSlice = createSliceWithThunks({
 
     reducers: (create) => ({}),
 });
-
-// export const {
-//     getUserProfile,
-//     getProfileStatus,
-//     editProfileStatus,
-//     addNewPost,
-//     onPostChange,
-//     onStatusChange,
-// } = profileSlice.actions;
 
 export const { selectFriendsList } = sidebarSlice.selectors;
 

@@ -21,92 +21,88 @@ export type DialogsDataType = {
 export type MessagesDataType = {
     id: number;
     my_message: String;
-    message: String | null;
+    message: string | number | readonly string[] | undefined;
 };
 
-type DialogsPageType = {
-    dialogsPage: {
-        newMessageText: String | null;
-        dialogsData: Array<DialogsDataType>;
-        messagesData: Array<MessagesDataType>;
-    };
+export type DialogsPageType = {
+    newMessageText: string | number | readonly string[] | undefined;
+    dialogsData: Array<DialogsDataType>;
+    messagesData: Array<MessagesDataType>;
 };
 
 const initialState: DialogsPageType = {
-    dialogsPage: {
-        newMessageText: "qwerty",
-        dialogsData: [
-            {
-                id: "1",
-                name: "Ivan",
-                ava_alt: "ava",
-                ava_src: userPhoto,
-                message: fishText,
-            },
-            {
-                id: "2",
-                name: "Kirill",
-                ava_alt: "ava",
-                ava_src: userPhoto,
-                message: fishText,
-            },
-            {
-                id: "3",
-                name: "Anton",
-                ava_alt: "ava",
-                ava_src: userPhoto,
-                message: fishText,
-            },
-            {
-                id: "4",
-                name: "Mary",
-                ava_alt: "ava",
-                ava_src: userPhoto,
-                message: fishText,
-            },
-            {
-                id: "5",
-                name: "Alex",
-                ava_alt: "ava",
-                ava_src: userPhoto,
-                message: fishText,
-            },
-        ],
-        messagesData: [
-            {
-                id: 1,
-                my_message: "false",
-                message: fishText,
-            },
-            {
-                id: 2,
-                my_message: "true",
-                message: fishText,
-            },
-            {
-                id: 3,
-                my_message: "true",
-                message: fishText,
-            },
-            {
-                id: 4,
-                my_message: "false",
-                message: fishText,
-            },
-            {
-                id: 5,
-                my_message: "false",
-                message: fishText,
-            },
-        ],
-    },
+    newMessageText: "qwerty",
+    dialogsData: [
+        {
+            id: "1",
+            name: "Ivan",
+            ava_alt: "ava",
+            ava_src: userPhoto,
+            message: fishText,
+        },
+        {
+            id: "2",
+            name: "Kirill",
+            ava_alt: "ava",
+            ava_src: userPhoto,
+            message: fishText,
+        },
+        {
+            id: "3",
+            name: "Anton",
+            ava_alt: "ava",
+            ava_src: userPhoto,
+            message: fishText,
+        },
+        {
+            id: "4",
+            name: "Mary",
+            ava_alt: "ava",
+            ava_src: userPhoto,
+            message: fishText,
+        },
+        {
+            id: "5",
+            name: "Alex",
+            ava_alt: "ava",
+            ava_src: userPhoto,
+            message: fishText,
+        },
+    ],
+    messagesData: [
+        {
+            id: 1,
+            my_message: "false",
+            message: fishText,
+        },
+        {
+            id: 2,
+            my_message: "true",
+            message: fishText,
+        },
+        {
+            id: 3,
+            my_message: "true",
+            message: fishText,
+        },
+        {
+            id: 4,
+            my_message: "false",
+            message: fishText,
+        },
+        {
+            id: 5,
+            my_message: "false",
+            message: fishText,
+        },
+    ],
 };
 
 export const dialogsSlice = createSliceWithThunks({
     name: "dialogsPage",
     initialState,
     selectors: {
-        selectDialogsPage: (state) => state.dialogsPage,
+        selectDialogsPage: (state) => state,
     },
 
     reducers: (create) => ({
@@ -115,16 +111,16 @@ export const dialogsSlice = createSliceWithThunks({
                 let newMessege: MessagesDataType = {
                     id: Number(nanoid()),
                     my_message: "true",
-                    message: state.dialogsPage.newMessageText,
+                    message: state.newMessageText,
                 };
-                state.dialogsPage.messagesData.push(newMessege);
-                state.dialogsPage.newMessageText = "";
+                state.messagesData.push(newMessege);
+                state.newMessageText = "";
                 return state;
             }
         ),
         updateMessageText: create.reducer(
             (state: DialogsPageType, action: ActionType): DialogsPageType => {
-                state.dialogsPage.newMessageText = action.payload;
+                state.newMessageText = action.payload;
                 return state;
             }
         ),

@@ -1,29 +1,10 @@
-import { error } from "console";
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
 import { usersAPI } from "../../api/samuraiAPI";
+import { PhotosType, UsersRequestType, UserType } from "../../types/types";
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 });
-
-export type UsersRequestType = {
-    currentPage: number;
-    pageSize: number;
-};
-
-export type PhotosType = {
-    small: string;
-    large: string;
-};
-
-export type UserType = {
-    followed: boolean;
-    id: number;
-    name: string;
-    photos: PhotosType;
-    status: null;
-    uniqueUrlName: null;
-};
 
 export type UsersListType = {
     usersList: {
@@ -79,11 +60,11 @@ export const usersSlice = createSliceWithThunks({
                 return await usersAPI.userFollow(usersId);
             },
             {
-                pending: (state: UsersListType) => {
+                pending: (state) => {
                     state.usersList.status = "Loading";
                     state.usersList.error = null;
                 },
-                fulfilled: (state: UsersListType, action: any) => {
+                fulfilled: (state, action: any) => {
                     state.usersList.status = "Resolved";
                     state.usersList.users.map((user) => {
                         if (user.id === action.meta.arg) {
