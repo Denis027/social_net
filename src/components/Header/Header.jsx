@@ -1,9 +1,9 @@
 import React from "react";
 import style from "./Header.module.css";
 import { NavLink } from "react-router-dom";
-import { getLogoutMe, selectIsAuth } from "../../redux/slices/authSlice.ts";
+import { getLogoutMe, selectIsAuth } from "../../app/redux/slices/authSlice.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { myPhoto } from "../Fish";
+import { myPhoto } from "../../app/Fish";
 
 const Header = (props) => {
     const dispatch = useDispatch();

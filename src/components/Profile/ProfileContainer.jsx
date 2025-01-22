@@ -11,10 +11,10 @@ import {
     addNewPost,
     selectProfileData,
     selectMyPostsData,
-} from "../../redux/slices/profileSlice.ts";
+} from "../../app/redux/slices/profileSlice.ts";
 import MyPosts from "./MyPosts/MyPosts";
 import { compose } from "redux";
-import { withRouter } from "../../HOC/withRouter.js";
+import { withRouter } from "../../app/HOC/withRouter";
 
 const ProfileContainer = React.memo((props) => {
     const profileData = useSelector(selectProfileData);

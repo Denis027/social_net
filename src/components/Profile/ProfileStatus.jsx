@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./ProfileInfo.module.css";
 import { useSelector } from "react-redux";
-import { selectProfileData } from "../../redux/slices/profileSlice.ts";
+import { selectProfileData } from "../../app/redux/slices/profileSlice.ts";
 
 const ProfileStatus = (props) => {
     const [editMode, setEditMode] = useState(false);

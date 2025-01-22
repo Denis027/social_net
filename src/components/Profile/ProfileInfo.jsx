@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./ProfileInfo.module.css";
-import Preloader from "../Preloader";
-import { fishText, myPhoto } from "../Fish";
+import Preloader from "../../app/Preloader";
+import { fishText, myPhoto } from "../../app/Fish";
 import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {

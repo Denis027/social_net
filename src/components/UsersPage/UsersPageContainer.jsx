@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import UsersPage from "./UsersPage";
 import { useDispatch, useSelector } from "react-redux";
-import Preloader from "../Preloader";
+import Preloader from "../../app/Preloader";
 import {
     selectUsersList,
     getUsers,
     userFollow,
     userUnfollow,
-} from "../../redux/slices/usersSlice.ts";
+} from "../../app/redux/slices/usersSlice.ts";
 
 const UsersPageContainer = (props) => {
     const usersList = useSelector(selectUsersList);

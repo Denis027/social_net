@@ -1,5 +1,5 @@
 import { asyncThunkCreator, buildCreateSlice, nanoid } from "@reduxjs/toolkit";
-import { fishText, userPhoto } from "../../components/Fish";
+import { fishText, userPhoto } from "../../Fish";
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },

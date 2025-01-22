@@ -1,5 +1,5 @@
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
-import { usersAPI } from "../../api/samuraiAPI";
+import { usersAPI } from "../../../api/samuraiAPI";
 import { UsersRequestType, UserType } from "../../types/types";
 
 const createSliceWithThunks = buildCreateSlice({

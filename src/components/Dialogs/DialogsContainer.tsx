@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from "../../types/hooks.ts";
+import { useAppDispatch, useAppSelector } from "../../app/types/hooks.ts";
 import {
     selectDialogsPage,
     sendNewMessage,
     updateMessageText,
-} from "../../redux/slices/dialogsSlice.ts";
+} from "../../app/redux/slices/dialogsSlice.ts";
 import Dialogs from "./Dialogs.tsx";
 import React from "react";
 

@@ -3,7 +3,6 @@ import "./App.css";
 // eslint-disable-next-line
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuthMe, selectIsAuth } from "./redux/slices/authSlice.ts";
 
 //pages
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -13,6 +12,7 @@ import NavContainer from "./components/Nav/NavContainer";
 import UsersPageContainer from "./components/UsersPage/UsersPageContainer";
 // eslint-disable-next-line
 import LoginContainer from "./components/Login/LoginContainer";
+import { getAuthMe, selectIsAuth } from "../src/app/redux/slices/authSlice.ts";
 // import { withSuspense } from "./hoc/withLazySuspense";
 
 // const DialogsContainerLazy = lazy(() => <DialogsContainer />);

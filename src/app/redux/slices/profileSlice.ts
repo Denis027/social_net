@@ -1,8 +1,8 @@
 import { PostType, UserProfileType } from "../../types/types";
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
-import { profileAPI } from "../../api/samuraiAPI";
+import { profileAPI } from "../../../api/samuraiAPI";
 // eslint-disable-next-line
-import { myPhoto, userPhoto } from "../../components/Fish";
+import { myPhoto, userPhoto } from "../../Fish";
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },

@@ -1,5 +1,5 @@
 import React from "react";
-import preloader from "../components/videoplayback-_online-video-cutter.com_.gif";
+import preloader from "../app/img/videoplayback-_online-video-cutter.com_.gif";
 
 const Preloader = () => {
     return (

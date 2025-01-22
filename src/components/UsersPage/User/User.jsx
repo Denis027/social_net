@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./User.module.css";
 import { NavLink } from "react-router-dom";
-import { fishText, userPhoto } from "../../Fish";
+import { fishText, userPhoto } from "../../../app/Fish";
 
 const User = (props) => {
     return (

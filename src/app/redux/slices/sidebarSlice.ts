@@ -1,5 +1,5 @@
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
-import { userPhoto } from "../../components/Fish";
+import { userPhoto } from "../../Fish";
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
@@ -22,7 +22,7 @@ const initialState: SideBarType = {
             id: 1,
             name: "Ivan",
             ava_alt: "ava",
-            ava_src: userPhoto,
+            ava_src: userPhoto
         },
         {
             id: 2,

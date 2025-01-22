@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getLoginMe } from "../../redux/slices/authSlice.ts";
+import { getLoginMe } from "../../app/redux/slices/authSlice.ts";
 import { useFormik } from "formik";
 
 const LoginForm = (props) => {
