@@ -1,7 +1,7 @@
-import Dialog from "./Dialog/Dialog";
+import Dialog from "./Dialog/Dialog.tsx";
 import style from "./Dialogs.module.css";
-import Message from "./Dialog/Message/Message";
-import React, { useState } from "react";
+import Message from "./Dialog/Message/Message.tsx";
+import React from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { DialogsPageType } from "../../redux/slices/dialogsSlice.ts";
 
@@ -18,8 +18,8 @@ const Dialogs: React.FC<PropsType> = ({
 }) => {
     const dialogItem = dialogsPage.dialogsData.map((d) => (
         <Dialog
-            alt={d.ava_alt}
-            src={d.ava_src}
+            ava_alt={d.ava_alt}
+            ava_src={d.ava_src}
             name={d.name}
             id={d.id}
             key={nanoid()}
@@ -28,7 +28,12 @@ const Dialogs: React.FC<PropsType> = ({
     ));
 
     const messageItem = dialogsPage.messagesData.map((m) => (
-        <Message key={nanoid()} my_message={m.my_message} message={m.message} />
+        <Message
+            key={nanoid()}
+            id={m.id}
+            my_message={m.my_message}
+            message={m.message}
+        />
     ));
 
     return (

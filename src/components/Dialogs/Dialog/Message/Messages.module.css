@@ -7,6 +7,6 @@
     justify-self: start;
 }
 
-.item[my_message*="true"] {
+.item[data-my_message*="true"] {
     justify-self: end;
 }

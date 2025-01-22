@@ -2,15 +2,16 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Dialog.module.css";
 import { nanoid } from "@reduxjs/toolkit";
+import { DialogsDataType } from "../../../redux/slices/dialogsSlice";
 
-const Dialog = (props) => {
+const Dialog: React.FC<DialogsDataType> = (props) => {
     return (
         <NavLink to={"/dialogs/" + props.id}>
             <div className={style.dialog_wrapper}>
                 <img
                     className={style.Avatarka}
-                    alt={props.alt}
-                    src={props.src}
+                    alt={props.ava_src}
+                    src={props.ava_src}
                     id={props.id}
                     key={nanoid()}
                 ></img>

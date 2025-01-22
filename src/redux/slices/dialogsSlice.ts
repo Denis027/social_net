@@ -11,23 +11,23 @@ export type ActionType = {
 };
 
 export type DialogsDataType = {
-    id: String;
-    name: String;
-    ava_alt: String;
-    ava_src: String;
-    message: String;
+    id: string;
+    name: string;
+    ava_alt: string;
+    ava_src: string;
+    message: string;
 };
 
-export type MessagesDataType = {
+export type MessageDataType = {
     id: number;
-    my_message: String;
+    my_message: string;
     message: string | number | readonly string[] | undefined;
 };
 
 export type DialogsPageType = {
     newMessageText: string | number | readonly string[] | undefined;
     dialogsData: Array<DialogsDataType>;
-    messagesData: Array<MessagesDataType>;
+    messagesData: Array<MessageDataType>;
 };
 
 const initialState: DialogsPageType = {
@@ -108,7 +108,7 @@ export const dialogsSlice = createSliceWithThunks({
     reducers: (create) => ({
         sendNewMessage: create.reducer(
             (state: DialogsPageType): DialogsPageType => {
-                let newMessege: MessagesDataType = {
+                let newMessege: MessageDataType = {
                     id: Number(nanoid()),
                     my_message: "true",
                     message: state.newMessageText,
