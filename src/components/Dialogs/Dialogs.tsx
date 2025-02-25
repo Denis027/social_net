@@ -1,9 +1,9 @@
-import Dialog from "./Dialog/Dialog.tsx";
+import Dialog from "./Dialog/Dialog";
 import style from "./Dialogs.module.css";
-import Message from "./Dialog/Message/Message.tsx";
+import Message from "./Dialog/Message/Message";
 import React from "react";
 import { nanoid } from "@reduxjs/toolkit";
-import { DialogsPageType } from "../../redux/slices/dialogsSlice.ts";
+import { DialogsPageType } from "../../app/redux/slices/dialogsSlice";
 
 type PropsType = {
     dialogsPage: DialogsPageType;

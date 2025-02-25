@@ -5,13 +5,13 @@ import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //pages
-import HeaderContainer from "./components/Header/HeaderContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer.jsx";
+import ProfileContainer from "./components/Profile/ProfileContainer.jsx";
 import DialogsContainer from "./components/Dialogs/DialogsContainer.tsx";
-import NavContainer from "./components/Nav/NavContainer";
-import UsersPageContainer from "./components/UsersPage/UsersPageContainer";
+import NavContainer from "./components/Nav/NavContainer.jsx";
+import UsersPageContainer from "./components/UsersPage/UsersPageContainer.jsx";
 // eslint-disable-next-line
-import LoginContainer from "./components/Login/LoginContainer";
+import LoginContainer from "./components/Login/LoginContainer.jsx";
 import { getAuthMe, selectIsAuth } from "../src/app/redux/slices/authSlice.ts";
 // import { withSuspense } from "./hoc/withLazySuspense";
 

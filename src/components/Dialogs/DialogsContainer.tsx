@@ -1,15 +1,15 @@
-import { useAppDispatch, useAppSelector } from "../../app/types/hooks.ts";
+import { useAppDispatch, useAppSelector } from "../../app/types/hooks";
 import {
+    dialogsSlice,
     selectDialogsPage,
-    sendNewMessage,
-    updateMessageText,
-} from "../../app/redux/slices/dialogsSlice.ts";
-import Dialogs from "./Dialogs.tsx";
+} from "../../app/redux/slices/dialogsSlice";
+import Dialogs from "./Dialogs";
 import React from "react";
 
 const DialogsContainer: React.FC = () => {
     const dispatch = useAppDispatch();
     const dialogsPage = useAppSelector(selectDialogsPage);
+    const { sendNewMessage, updateMessageText } = dialogsSlice.actions;
 
     const updateMessage = (newMessageText) => {
         dispatch(updateMessageText(newMessageText));

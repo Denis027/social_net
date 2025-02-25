@@ -1,5 +1,9 @@
 import { PostType, UserProfileType } from "../../types/types";
-import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
+import {
+    asyncThunkCreator,
+    buildCreateSlice,
+    PayloadAction,
+} from "@reduxjs/toolkit";
 import { profileAPI } from "../../../api/samuraiAPI";
 // eslint-disable-next-line
 import { myPhoto, userPhoto } from "../../Fish";
@@ -26,7 +30,7 @@ export type ProfilePageType = {
     error: any;
 };
 
-const initialState: ProfilePageType = {
+const initialState = {
     profileData: {
         profile: null,
         profileStatus: null,
@@ -86,8 +90,7 @@ export const profileSlice = createSliceWithThunks({
             state.myPostsData.Posts.push(newPost);
             state.myPostsData.newPostText = "";
         }),
-        onPostChange: create.reducer((state, action: any) => {
-            console.log(action);
+        onPostChange: create.reducer((state, action: PayloadAction<string>) => {
             state.myPostsData.newPostText = action.payload;
         }),
         getUserProfile: create.asyncThunk(
@@ -97,16 +100,18 @@ export const profileSlice = createSliceWithThunks({
             {
                 pending: (state) => {
                     state.status = "Loading";
-                    state.error = null;
+                    state.error = "";
                 },
-                fulfilled: (state, action: any) => {
+                fulfilled: (state, action) => {
                     console.log(action);
                     state.status = "Resolved";
                     state.profileData.profile = action.payload;
                 },
-                rejected: (state, action) => {
+                rejected: (state, action: any) => {
                     state.status = "error";
-                    state.error = action.error;
+                    console.log(action.meta.error);
+
+                    state.error = action.meta.error;
                 },
             }
         ),
@@ -132,7 +137,7 @@ export const profileSlice = createSliceWithThunks({
                 },
             }
         ),
-        onStatusChange: create.reducer((state, action: any) => {
+        onStatusChange: create.reducer((state, action) => {
             return (state.profileData.newStatusText = action.payload);
         }),
         editProfileStatus: create.asyncThunk(

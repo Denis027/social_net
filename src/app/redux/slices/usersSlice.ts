@@ -1,6 +1,6 @@
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
 import { usersAPI } from "../../../api/samuraiAPI";
-import { UsersRequestType, UserType } from "../../types/types";
+import { UserType } from "../../types/types";
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
@@ -30,12 +30,12 @@ export const usersSlice = createSliceWithThunks({
     name: "usersList",
     initialState,
     selectors: {
-        selectUsersList: (state) => state.usersList,
+        selectUsersList: (state: UsersListType) => state.usersList,
     },
 
     reducers: (create) => ({
         getUsers: create.asyncThunk(
-            async ({ currentPage, pageSize }: UsersRequestType) => {
+            async (currentPage, pageSize) => {
                 return await usersAPI.getUsers({ currentPage, pageSize });
             },
             {
@@ -47,7 +47,7 @@ export const usersSlice = createSliceWithThunks({
                     state.usersList.isFetching = false;
                     state.usersList.totalUsersCount = action.payload.totalCount;
                     state.usersList.users = action.payload.items;
-                    console.log(action.payload.items);
+                    // console.log(action.payload.items);
                 },
                 rejected: (state: UsersListType, action: any) => {
                     state.usersList.status = "error";

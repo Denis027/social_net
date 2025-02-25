@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Nav from "./Nav";
 import { BrowserRouter } from "react-router-dom";
-import userPhoto from "../Fish";
+import userPhoto from "../../app/Fish";
 
 describe("render Nav", () => {
     const friendsList = [

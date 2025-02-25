@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Dialog.module.css";
 import { nanoid } from "@reduxjs/toolkit";
-import { DialogsDataType } from "../../../redux/slices/dialogsSlice";
+import { DialogsDataType } from "../../../app/redux/slices/dialogsSlice";
 
 const Dialog: React.FC<DialogsDataType> = (props) => {
     return (
