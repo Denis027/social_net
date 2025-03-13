@@ -2,7 +2,7 @@ import { AppDispatch, RootState } from "../redux/reduxStore";
 
 export type UsersRequestType = {
     currentPage: number;
-    pageSize: number;
+    pageSize: string;
 };
 
 export type UserType = {

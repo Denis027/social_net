@@ -50,6 +50,8 @@ export const profileAPI = {
 
 export const usersAPI = {
     getUsers({ currentPage, pageSize }) {
+        console.log(currentPage, pageSize);
+
         return instans
             .get(`users?page=${currentPage}&count=${pageSize}`)
             .then((response) => {

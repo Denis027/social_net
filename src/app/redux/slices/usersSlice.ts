@@ -1,6 +1,6 @@
 import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
 import { usersAPI } from "../../../api/samuraiAPI";
-import { UserType } from "../../types/types";
+import { UsersRequestType, UserType } from "../../types/types";
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
@@ -35,8 +35,9 @@ export const usersSlice = createSliceWithThunks({
 
     reducers: (create) => ({
         getUsers: create.asyncThunk(
-            async (currentPage, pageSize) => {
-                return await usersAPI.getUsers({ currentPage, pageSize });
+            async (currentPage: UsersRequestType) => {
+                console.log(currentPage);
+                return await usersAPI.getUsers(currentPage);
             },
             {
                 pending: (state) => {

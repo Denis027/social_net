@@ -13,7 +13,6 @@ const Post = (props) => {
             ></img>
             <h3 className={style.name}>{props.name}</h3>
             <div className={style.item}>{props.message}</div>
-            <button className={style.likeButton}>Like {props.likecount}</button>
         </div>
     );
 };
